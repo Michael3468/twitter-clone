@@ -1,14 +1,22 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Sidebar from '../components/Sidebar';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="">
       <Head>
         <title>twitter</title>
         <link rel="icon" href="favicon.ico" />
       </Head>
+
+      <main className="bg-black min-h-screen flex max-w-[1500px] mx-auto">
+        <Sidebar />
+        {/* Feeds */}
+        {/* Widgets */}
+        {/* Modal */}
+      </main>
     </div>
   );
 }
