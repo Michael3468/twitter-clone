@@ -12,6 +12,7 @@ import {
   ClipboardListIcon,
   UserIcon,
   DotsCircleHorizontalIcon,
+  DotsHorizontalIcon,
 } from '@heroicons/react/outline';
 
 function Sidebar() {
@@ -31,7 +32,7 @@ function Sidebar() {
       </div>
 
       {/* links */}
-      <div className="space-y-2.5 mt-4 mb-2.5 xl:ml-24">
+      <div className="mt-4 mb-2.5 xl:ml-24">
         <SidebarLink text="Home" Icon={HomeIcon} active />
         <SidebarLink text="Explore" Icon={HashtagIcon} />
         <SidebarLink text="Notifications" Icon={BellIcon} />
@@ -46,6 +47,16 @@ function Sidebar() {
       <button className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-56 h-[52px] text-lg font-bold shadow-md hover:bg-[#1a8cd8]">
         Tweet
       </button>
+
+      {/* user icon */}
+      <div className="text-[#d9d9d9] flex items-center justify-center hoverAnimation xl:ml-auto mt-auto">
+        <img src="" alt="" className="h-10 w-10 rounded-full xl:mr-2.5" />
+        <div className="hidden xl:inline leading-5">
+          <h4 className="font-bold">firebase 1875</h4>
+          <p className="text-[#6e767d]">@firebase1875</p>
+        </div>
+        <DotsHorizontalIcon className="h-5 hidden xl:inline ml-3" />
+      </div>
     </div>
   );
 }
