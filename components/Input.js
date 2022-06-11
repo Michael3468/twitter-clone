@@ -5,22 +5,12 @@ import {
   PhotographIcon,
   XIcon,
 } from '@heroicons/react/outline';
+
 import { useRef, useState } from 'react';
 
 /* Emoji mart */
-import { useEffect } from 'react';
-import data from '@emoji-mart/data';
+import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
-
-function EmojiPicker(props) {
-  const ref = useRef();
-
-  useEffect(() => {
-    new Picker({ ...props, data, ref });
-  }, []);
-
-  return <div ref={ref} />;
-}
 /* Emoji mart */
 
 function Input() {
@@ -32,10 +22,18 @@ function Input() {
 
   const addImageToPost = () => {};
 
+  const addEmoji = (e) => {
+    let sym = e.unified.split('-');
+    console.log('sym: ', sym);
+    let codesArray = [];
+    sym.forEach((el) => codesArray.push('0x' + el));
+    let emoji = String.fromCodePoint(...codesArray);
+    setInput(input + emoji);
+  };
+
   return (
-    <div
-      className={`border-b border-gray-700 p-3 flex space-x-3 overflow-y-scroll`}
-    >
+    // del overflow-y-scroll
+    <div className={`border-b border-gray-700 p-3 flex space-x-3`}>
       <img src="" alt="" className="h-11 w-11 rounded-full cursor-pointer" />
       <div className="w-full divide-y divide-gray-700">
         <div className={``}>
@@ -63,8 +61,9 @@ function Input() {
             </div>
           )}
         </div>
+
         <div className="flex items-center justify-between pt-2.5">
-          <div className="flex items-center">
+          <div className="flex items-center relative">
             <div className="icon" onClick={() => filePickerRef.current.click()}>
               <PhotographIcon className="h-[22px] text-[#1d9bf0]" />
               <input
@@ -74,20 +73,34 @@ function Input() {
                 ref={filePickerRef}
               />
             </div>
+
             <div className="icon rotate-90">
               <ChartBarIcon className="text-[#1d9bf0] h-[22px]" />
             </div>
+
             <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
               <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
             </div>
+
             <div className="icon">
               <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
             </div>
 
-            <div id="picker"></div>
             {/* Emoji mart */}
-            {showEmojis && <EmojiPicker onEmojiSelect={console.log} />}
-            {/* root.render(<EmojiPicker onEmojiSelect={console.log} />)} */}
+            {showEmojis && (
+              <Picker
+                onSelect={addEmoji}
+                style={{
+                  position: 'absolute',
+                  marginTop: '465px',
+                  marginLeft: -40,
+                  maxWidth: '320px',
+                  borderRadius: '20px',
+                  zIndex: 10,
+                }}
+                theme="dark"
+              />
+            )}
             {/* Emoji mart */}
           </div>
         </div>
