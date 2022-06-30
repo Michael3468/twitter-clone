@@ -127,6 +127,7 @@ function Post({ id, post, postPage }) {
             <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]" />
           </div>
         </div>
+
         {postPage && (
           <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
             {post?.text}
@@ -142,6 +143,7 @@ function Post({ id, post, postPage }) {
             postPage && 'mx-auto'
           }`}
         >
+          {/* comments icon */}
           <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
@@ -159,7 +161,9 @@ function Post({ id, post, postPage }) {
               </span>
             )}
           </div>
+          {/* comments icon end */}
 
+          {/* trash / share icon */}
           {session.user.uid === post?.id ? (
             <div
               className="flex items-center space-x-1 group"
@@ -180,7 +184,9 @@ function Post({ id, post, postPage }) {
               </div>
             </div>
           )}
+          {/* trash / share icon end */}
 
+          {/* like icon */}
           <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
@@ -205,13 +211,19 @@ function Post({ id, post, postPage }) {
               </span>
             )}
           </div>
+          {/* like icon end */}
 
+          {/* share icon */}
           <div className="icon group">
             <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
           </div>
+          {/* share icon end */}
+
+          {/* chat icon */}
           <div className="icon group">
             <ChartBarIcon className="h-5 group-hover:text-[#1d9bf0]" />
           </div>
+          {/* chat icon end */}
         </div>
       </div>
     </div>
