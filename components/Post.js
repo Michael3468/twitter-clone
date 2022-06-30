@@ -5,11 +5,12 @@ import {
   ChatIcon,
   DotsHorizontalIcon,
   HeartIcon,
-  HeartIconFilled,
+  // HeartIconFilled,
   ShareIcon,
   SwitchHorizontalIcon,
   TrashIcon,
 } from '@heroicons/react/outline';
+import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 import { useState, useEffect } from 'react';
 import {
   collection,
@@ -18,6 +19,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  setDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useSession } from 'next-auth/react';
@@ -31,6 +33,8 @@ function Post({ id, post, postPage }) {
   const [isOpen, setIsOpen] = useRecoilState(modalState);
   const [postId, setPostId] = useRecoilState(postIdState);
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [liked, setLiked] = useState(false);
   const router = useRouter();
 
   // useEffect(
@@ -44,6 +48,32 @@ function Post({ id, post, postPage }) {
   //     ),
   //   [db, id]
   // );
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, 'posts', id, 'likes'), (snapshot) =>
+        setLikes(snapshot.docs)
+      ),
+    [db, id]
+  );
+
+  useEffect(
+    () =>
+      setLiked(
+        likes.findIndex((like) => like.id === session?.user?.uid) !== -1
+      ),
+    [likes]
+  );
+
+  const likePost = async () => {
+    if (liked) {
+      await deleteDoc(doc(db, 'posts', id, 'likes', session.user.uid));
+    } else {
+      await setDoc(doc(db, 'posts', id, 'likes', session.user.uid), {
+        username: session.user.name,
+      });
+    }
+  };
 
   return (
     <div
@@ -84,7 +114,7 @@ function Post({ id, post, postPage }) {
             </div>{' '}
             ·{' '}
             <span className="hover:underline text-sm sm:text-[15px]">
-              {/* <Moment /> */}
+              <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
             </span>
             {!postPage && (
               <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
@@ -151,7 +181,7 @@ function Post({ id, post, postPage }) {
             </div>
           )}
 
-          {/* <div
+          <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
               e.stopPropagation();
@@ -165,12 +195,16 @@ function Post({ id, post, postPage }) {
                 <HeartIcon className="h-5 group-hover:text-pink-600" />
               )}
             </div>
-            {likes.lenght > 0 && (
-              <span className={`group-hover:text-pink-600 text-sm ${liked && 'text-pink-600'}`}>
-                {likes.lenght}
+            {likes.length > 0 && (
+              <span
+                className={`group-hover:text-pink-600 text-sm ${
+                  liked && 'text-pink-600'
+                }`}
+              >
+                {likes.length}
               </span>
             )}
-          </div> */}
+          </div>
 
           <div className="icon group">
             <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
