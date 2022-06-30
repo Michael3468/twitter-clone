@@ -1,17 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-
-import {
-  ChartBarIcon,
-  ChatIcon,
-  DotsHorizontalIcon,
-  HeartIcon,
-  // HeartIconFilled,
-  ShareIcon,
-  SwitchHorizontalIcon,
-  TrashIcon,
-} from '@heroicons/react/outline';
-import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 import { useState, useEffect } from 'react';
+
 import {
   collection,
   deleteDoc,
@@ -22,11 +11,23 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase';
+
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Moment from 'react-moment';
 import { useRecoilState } from 'recoil';
 import { modalState, postIdState } from '../atoms/modalAtom';
+
+import {
+  ChartBarIcon,
+  ChatIcon,
+  DotsHorizontalIcon,
+  HeartIcon,
+  ShareIcon,
+  SwitchHorizontalIcon,
+  TrashIcon,
+} from '@heroicons/react/outline';
+import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 
 function Post({ id, post, postPage }) {
   const { data: session } = useSession();
@@ -37,17 +38,17 @@ function Post({ id, post, postPage }) {
   const [liked, setLiked] = useState(false);
   const router = useRouter();
 
-  // useEffect(
-  //   () =>
-  //     onSnapshot(
-  //       query(
-  //         collection(db, 'posts', id, 'comments'),
-  //         orderBy('timestamp', 'desc')
-  //       ),
-  //       (snapshot) => setComments(snapshot.docs)
-  //     ),
-  //   [db, id]
-  // );
+  useEffect(
+    () =>
+      onSnapshot(
+        query(
+          collection(db, 'posts', id, 'comments'),
+          orderBy('timestamp', 'desc')
+        ),
+        (snapshot) => setComments(snapshot.docs)
+      ),
+    [db, id]
+  );
 
   useEffect(
     () =>
