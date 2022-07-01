@@ -1,9 +1,11 @@
-import Input from './Input';
-import { SparklesIcon } from '@heroicons/react/outline';
 import { useEffect, useState } from 'react';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
+
+import Input from './Input';
 import Post from './Post';
+
+import { SparklesIcon } from '@heroicons/react/outline';
 
 function Feed() {
   const [posts, setPosts] = useState([]);
