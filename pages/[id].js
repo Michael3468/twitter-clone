@@ -10,6 +10,7 @@ import Login from '../components/Login';
 import Modal from '../components/Modal';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
+import Widgets from '../components/Widgets';
 
 import { modalState } from '../atoms/modalAtom';
 
@@ -95,7 +96,11 @@ function PostPage({ trendingResults, followResults, providers }) {
         </div>
         {/* post with comments end */}
 
-        {/* Widgets */}
+        <Widgets
+          trendingResults={trendingResults}
+          followResults={followResults}
+        />
+
         {isOpen && <Modal />}
       </main>
     </div>
