@@ -10,9 +10,11 @@ import Login from '../components/Login';
 import Modal from '../components/Modal';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
-import Widgets from '../components/Widgets';
+import Widgets from '../components/Widgets/Widgets';
 
 import { modalState } from '../atoms/modalAtom';
+
+import followResults from '../components/json/whoToFollow.json';
 
 import {
   collection,
@@ -21,6 +23,7 @@ import {
   orderBy,
   query,
 } from 'firebase/firestore';
+
 import { db } from '../firebase';
 
 import { ArrowLeftIcon } from '@heroicons/react/solid';
@@ -110,10 +113,6 @@ export default PostPage;
 
 export async function getServerSideProps(context) {
   const trendingResults = await fetch('https://jsonkeeper.com/b/NKEV').then(
-    (res) => res.json()
-  );
-
-  const followResults = await fetch('https://jsonkeeper.com/b/WWMJ').then(
     (res) => res.json()
   );
 

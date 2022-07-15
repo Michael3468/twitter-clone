@@ -1,0 +1,17 @@
+[
+  {
+    "userImg":"spacex.jpg",
+    "username":"SpaceX",
+    "tag":"@SpaceX"
+  },
+  {
+    "userImg":"musk.jpg",
+    "username":"Elon Musk",
+    "tag":"@elonmusk"
+  },
+  {
+    "userImg":"tesla.jpg",
+    "username":"Tesla",
+    "tag":"@Tesla"
+  }
+]
