@@ -1,8 +1,10 @@
 import { SearchIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
-import Trending from './Trending';
+import Trending from '../Trending';
 
 function Widgets({ trendingResults, followResults }) {
+  const imagePath = '/images/widgets';
+
   return (
     <div className="hidden lg:inline ml-8 xl:w-[450px] py-1 space-y-5">
       {/* search */}
@@ -42,8 +44,8 @@ function Widgets({ trendingResults, followResults }) {
             className="hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center"
           >
             <Image
-              src={result.userImg}
-              alt=""
+              src={`${imagePath}/${result.userImg}`}
+              alt={result.username}
               width={50}
               height={50}
               objectFit="cover"

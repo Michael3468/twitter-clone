@@ -8,10 +8,12 @@ import Head from 'next/head';
 import Feed from '../components/Feed';
 import Login from '../components/Login';
 import Sidebar from '../components/Sidebar';
-import Widgets from '../components/Widgets';
+import Widgets from '../components/Widgets/Widgets';
 
 import { getProviders, getSession, useSession } from 'next-auth/react';
 import Modal from '../components/Modal';
+
+import followResults from '../components/json/whoToFollow.json';
 
 export default function Home({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
@@ -47,9 +49,9 @@ export async function getServerSideProps(context) {
     (res) => res.json()
   );
 
-  const followResults = await fetch('https://jsonkeeper.com/b/WWMJ').then(
-    (res) => res.json()
-  );
+  // const followResults = await fetch(`${server}/components/json/whoToFollow.json`).then(
+  //   (res) => res.json()
+  // );
 
   const providers = await getProviders();
   const session = await getSession(context);
