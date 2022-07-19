@@ -14,6 +14,7 @@ import { getProviders, getSession, useSession } from 'next-auth/react';
 import Modal from '../components/Modal';
 
 import followResults from '../components/json/whoToFollow.json';
+import trendingResults from '../components/json/whatsHappening.json';
 
 export default function Home({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
@@ -45,14 +46,6 @@ export default function Home({ trendingResults, followResults, providers }) {
 }
 
 export async function getServerSideProps(context) {
-  const trendingResults = await fetch('https://jsonkeeper.com/b/NKEV').then(
-    (res) => res.json()
-  );
-
-  // const followResults = await fetch(`${server}/components/json/whoToFollow.json`).then(
-  //   (res) => res.json()
-  // );
-
   const providers = await getProviders();
   const session = await getSession(context);
 

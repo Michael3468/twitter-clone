@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Trending from '../Trending';
 
 function Widgets({ trendingResults, followResults }) {
-  const imagePath = '/images/widgets';
+  const widgetsImagePath = '/images/widgets';
 
   return (
     <div className="hidden lg:inline ml-8 xl:w-[450px] py-1 space-y-5">
@@ -44,7 +44,7 @@ function Widgets({ trendingResults, followResults }) {
             className="hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center"
           >
             <Image
-              src={`${imagePath}/${result.userImg}`}
+              src={`${widgetsImagePath}/${result.userImg}`}
               alt={result.username}
               width={50}
               height={50}
