@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import { modalState, postIdState } from '../atoms/modalAtom';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useState } from 'react';
+
 import {
   onSnapshot,
   doc,
@@ -10,8 +11,10 @@ import {
   collection,
   serverTimestamp,
 } from '@firebase/firestore';
+
 import { db } from '../firebase';
 import { useSession } from 'next-auth/react';
+
 import {
   CalendarIcon,
   ChartBarIcon,
@@ -19,6 +22,7 @@ import {
   PhotographIcon,
   XIcon,
 } from '@heroicons/react/outline';
+
 import { useRouter } from 'next/router';
 import Moment from 'react-moment';
 
@@ -93,7 +97,6 @@ function Modal() {
                 <div className="w-full">
                   <div className="text-[#6e767d] flex gap-x-3 relative">
                     <span className="w-0.5 h-full z-[-1] absolute left-5 top-11 bg-gray-600" />
-                    {/* TODO change all img tags to next Image */}
                     <img
                       src={post?.userImage}
                       alt=""

@@ -1,6 +1,3 @@
-// TODO add dark/light mode
-// https://tailwindcss.ru/docs/dark-mode/
-
 import { useRecoilState } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
 
