@@ -6,9 +6,11 @@ import Input from './Input';
 import Post from './Post';
 
 import { SparklesIcon } from '@heroicons/react/outline';
+import Spinner from './Spinner/Spinner';
 
 function Feed() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(
     () =>
@@ -16,6 +18,7 @@ function Feed() {
         query(collection(db, 'posts'), orderBy('timestamp', 'desc')),
         (snapshot) => {
           setPosts(snapshot.docs);
+          setLoading(true);
         }
       ),
     [db]
@@ -32,11 +35,15 @@ function Feed() {
 
       <Input />
 
-      <div className="pb-72">
-        {posts.map((post) => (
-          <Post key={post.id} id={post.id} post={post.data()} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="pb-72">
+          {posts.map((post) => (
+            <Post key={post.id} id={post.id} post={post.data()} />
+          ))}
+        </div>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 }
