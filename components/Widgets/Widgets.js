@@ -2,18 +2,20 @@ import { SearchIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import Trending from '../Trending';
 
+import styles from './widgets.module.css';
+
 function Widgets({ trendingResults, followResults }) {
   const widgetsImagePath = '/images/widgets';
 
   return (
-    <div className="hidden lg:inline ml-8 xl:w-[450px] py-1 space-y-5">
+    <div className={styles.widgets}>
       {/* search */}
-      <div className="sticky top-0 py-1.5 bg-black z-50 w-11/12 xl:w-9/12">
-        <div className="flex items-center bg-[#202327] p-3 rounded-full relative">
-          <SearchIcon className="text-gray-500 h-5 z-50" />
+      <div className={styles.search}>
+        <div className={styles.search__bar}>
+          <SearchIcon className={styles.search__icon} />
           <input
             type="text"
-            className="bg-transparent placeholder-gray-500 outline-none text-[#d9d9d9] absolute inset-0 pl-11 border border-transparent w-full h-full focus:border-[#1d9bf0] rounded-full focus:bg-black focus:shadow-lg"
+            className={styles.search__input}
             placeholder="Search Twitter"
           />
         </div>
@@ -21,28 +23,23 @@ function Widgets({ trendingResults, followResults }) {
       {/* search end */}
 
       {/* trending */}
-      <div className="text-[#d9d9d9] space-y-3 bg-[#15181c] pt-2 rounded-xl w-11/12 xl:w-9/12">
-        <h4 className="font-bold text-xl px-4">{`What's happening`}</h4>
+      <div className={styles.trending}>
+        <h4 className={styles.trending__caption}>{`What's happening`}</h4>
 
         {trendingResults.map((result, index) => (
           <Trending key={index} result={result} />
         ))}
 
-        <button className="hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center justify-between w-full font-light text-[#1d9bf0]">
-          Show more
-        </button>
+        <button className={styles.trending__button}>Show more</button>
       </div>
       {/* trending end */}
 
       {/* follow */}
-      <div className="text-[#d9d9d9] space-y-3 bg-[#15181c] pt-2 rounded-xl w-11/12 xl:w-9/12">
-        <h4 className="font-bold text-xl px-4">Who to follow</h4>
+      <div className={styles.follow}>
+        <h4 className={styles.follow__caption}>Who to follow</h4>
 
         {followResults.map((result, index) => (
-          <div
-            key={index}
-            className="hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center"
-          >
+          <div key={index} className={styles.follow__item}>
             <Image
               src={`${widgetsImagePath}/${result.userImg}`}
               alt={result.username}
@@ -51,19 +48,17 @@ function Widgets({ trendingResults, followResults }) {
               objectFit="cover"
               className="rounded-full"
             />
-            <div className="ml-4 leading-5 group">
-              <h4 className="font-bold group-hover:underline">
-                {result.username}
-              </h4>
-              <h5 className="text-gray-500 text-[15px]">{result.tag}</h5>
+            <div className={styles.follow__item_text}>
+              <h4 className={styles.follow__item_text_username}>{result.username}</h4>
+              <h5 className={styles.follow__item_text_tag}>{result.tag}</h5>
             </div>
-            <button className="ml-auto bg-white text-black rounded-full font-bold text-sm py-1.5 px-3.5">
+            <button className={styles.follow__item_button}>
               Follow
             </button>
           </div>
         ))}
 
-        <button className="hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center justify-between w-full font-light text-[#1d9bf0]">
+        <button className={styles.follow__button}>
           Show more
         </button>
       </div>
