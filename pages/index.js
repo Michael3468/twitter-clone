@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
 
 import Head from 'next/head';
-import Feed from '../components/Feed';
+import Feed from '../components/Feed/Feed';
 import Login from '../components/Login';
 import Sidebar from '../components/Sidebar';
 import Widgets from '../components/Widgets/Widgets';
