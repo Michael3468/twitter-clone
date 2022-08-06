@@ -12,12 +12,25 @@ import Modal from '../components/Modal';
 
 import followResults from '../components/json/whoToFollow.json';
 import trendingResults from '../components/json/whatsHappening.json';
+import { useEffect, useState } from 'react';
 
 export default function Home({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState(modalState);
 
-  if (!session) return <Login providers={providers} />;
+  // noscript tag simulation
+  const [isJSEnabled, setIsJSEnabled] = useState(false);
+
+  useEffect(() => {
+    setIsJSEnabled(true);
+  }, []);
+
+  if (!session && isJSEnabled) {
+    return <Login providers={providers} />;
+  } else if (!isJSEnabled) {
+    return <div>This App Works Better With Enabled JavaScript</div>;
+  }
+  // noscript tag simulation end
 
   return (
     <div className="">
