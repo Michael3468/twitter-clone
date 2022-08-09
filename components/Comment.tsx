@@ -9,8 +9,22 @@ import {
   HeartIcon,
   ShareIcon,
 } from '@heroicons/react/outline';
+import { FC } from 'react';
 
-function Comment({ id, comment }) {
+interface IComment {
+  userImage: string,
+  username: string,
+  tag: string,
+  timestamp: any,
+  comment: string,
+}
+
+interface ICommentProps {
+  id: string,
+  comment: IComment,
+}
+
+const Comment:FC<ICommentProps> = ({ id, comment }) => {
   return (
     <div className="p-3 flex cursor-pointer border-b border-gray-700">
       <img
