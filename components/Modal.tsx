@@ -47,9 +47,9 @@ function Modal() {
 
     await addDoc(collection(db, 'posts', postId, 'comments'), {
       comment: comment,
-      username: session.user.name,
-      tag: session.user.tag,
-      userImage: session.user.image,
+      username: session?.user?.name,
+      tag: session?.user?.tag,
+      userImage: session?.user?.image,
       timestamp: serverTimestamp(),
     });
 
@@ -123,7 +123,7 @@ function Modal() {
 
                   <div className="mt-7 flex space-x-3 w-full">
                     <img
-                      src={session.user.image}
+                      src={session?.user?.image}
                       alt=""
                       className="w-11 h-11 rounded-full"
                     />
