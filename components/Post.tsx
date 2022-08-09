@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 
 import {
   collection,
@@ -29,7 +29,23 @@ import {
 } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 
-function Post({ id, post, postPage }) {
+interface IPost {
+  id: string,
+  userImage: string,
+  username: string,
+  tag: string,
+  timestamp: any,
+  text: string,
+  image: string,
+}
+
+interface IPostProps {
+  id: string,
+  post: IPost,
+  postPage: string,
+}
+
+const Post:FC<IPostProps> = ({ id, post, postPage }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState(modalState);
   const [postId, setPostId] = useRecoilState(postIdState);
