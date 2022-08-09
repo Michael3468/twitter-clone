@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase';
 
-import Input from '../Input';
+import Input from '../Input/Input';
 import Post from '../Post';
 
 import { SparklesIcon } from '@heroicons/react/outline';
