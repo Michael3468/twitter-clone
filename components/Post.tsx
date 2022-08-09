@@ -5,9 +5,11 @@ import {
   collection,
   deleteDoc,
   doc,
+  DocumentData,
   onSnapshot,
   orderBy,
   query,
+  QueryDocumentSnapshot,
   setDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -49,9 +51,9 @@ const Post:FC<IPostProps> = ({ id, post, postPage }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState(modalState);
   const [postId, setPostId] = useRecoilState(postIdState);
-  const [comments, setComments] = useState([]);
-  const [likes, setLikes] = useState([]);
-  const [liked, setLiked] = useState(false);
+  const [comments, setComments] = useState<QueryDocumentSnapshot<DocumentData>[]>([]);
+  const [likes, setLikes] = useState<QueryDocumentSnapshot<DocumentData>[]>([]);
+  const [liked, setLiked] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(
@@ -84,10 +86,10 @@ const Post:FC<IPostProps> = ({ id, post, postPage }) => {
 
   const likePost = async () => {
     if (liked) {
-      await deleteDoc(doc(db, 'posts', id, 'likes', session.user.uid));
+      await deleteDoc(doc(db, 'posts', id, 'likes', session?.user?.uid));
     } else {
-      await setDoc(doc(db, 'posts', id, 'likes', session.user.uid), {
-        username: session.user.name,
+      await setDoc(doc(db, 'posts', id, 'likes', session?.user?.uid), {
+        username: session?.user?.name,
       });
     }
   };
@@ -181,7 +183,7 @@ const Post:FC<IPostProps> = ({ id, post, postPage }) => {
           {/* comments icon end */}
 
           {/* trash / share icon */}
-          {session.user.uid === post?.id ? (
+          {session?.user?.uid === post?.id ? (
             <div
               className="flex items-center space-x-1 group"
               onClick={(e) => {
@@ -246,4 +248,5 @@ const Post:FC<IPostProps> = ({ id, post, postPage }) => {
     </div>
   );
 }
+
 export default Post;
