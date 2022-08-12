@@ -31,7 +31,7 @@ import {
 } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 
-interface IPost {
+export interface IPost {
   id: string,
   userImage: string,
   username: string,
@@ -39,12 +39,13 @@ interface IPost {
   timestamp: any,
   text: string,
   image: string,
+  data: () => {},
 }
 
 interface IPostProps {
   id: string,
   post: IPost,
-  postPage: string,
+  postPage?: string,
 }
 
 const Post:FC<IPostProps> = ({ id, post, postPage }) => {

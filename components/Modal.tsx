@@ -7,9 +7,11 @@ import { Fragment, useEffect, useState } from 'react';
 import {
   onSnapshot,
   doc,
+  DocumentData,
   addDoc,
   collection,
   serverTimestamp,
+  QueryDocumentSnapshot,
 } from '@firebase/firestore';
 
 import { db } from '../firebase';
@@ -26,12 +28,14 @@ import {
 import { useRouter } from 'next/router';
 import Moment from 'react-moment';
 
+import { IPost } from './Post'
+
 function Modal() {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState(modalState);
   const [postId, setPostId] = useRecoilState(postIdState);
-  const [post, setPost] = useState();
-  const [comment, setComment] = useState('');
+  const [post, setPost] = useState<IPost>();
+  const [comment, setComment] = useState<string>('');
   const router = useRouter();
 
   useEffect(
