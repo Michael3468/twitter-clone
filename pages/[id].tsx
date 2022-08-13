@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import { getProviders, getSession, useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import { ClientSafeProvider, getProviders, getSession, LiteralUnion, useSession } from 'next-auth/react';
+import { FC, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import Head from 'next/head';
@@ -28,8 +28,17 @@ import {
 import { db } from '../firebase';
 
 import { ArrowLeftIcon } from '@heroicons/react/solid';
+import { IFollowResults, ITrendingResults } from '../types';
+import { BuiltInProviderType } from 'next-auth/providers';
+import { GetServerSideProps } from 'next';
 
-function PostPage({ trendingResults, followResults, providers }) {
+interface IPostPageProps {
+  trendingResults: ITrendingResults[],
+  followResults: IFollowResults[],
+  providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null,
+}
+
+const PostPage:FC<IPostPageProps> = ({ trendingResults, followResults, providers }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
   const [comments, setComments] = useState([]);
@@ -112,7 +121,7 @@ function PostPage({ trendingResults, followResults, providers }) {
 }
 export default PostPage;
 
-export async function getServerSideProps(context) {
+export const getServerSideProps:GetServerSideProps = async (context) => {
   const providers = await getProviders();
   const session = await getSession(context);
 

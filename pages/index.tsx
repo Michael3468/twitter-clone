@@ -7,14 +7,23 @@ import Login from '../components/Login';
 import Sidebar from '../components/Sidebar';
 import Widgets from '../components/Widgets/Widgets';
 
-import { getProviders, getSession, useSession } from 'next-auth/react';
+import { ClientSafeProvider, getProviders, getSession, LiteralUnion, useSession } from 'next-auth/react';
 import Modal from '../components/Modal';
 
 import followResults from '../components/json/whoToFollow.json';
 import trendingResults from '../components/json/whatsHappening.json';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { IFollowResults, ITrendingResults } from '../types';
+import { BuiltInProviderType } from 'next-auth/providers';
+import { GetServerSideProps } from 'next';
 
-export default function Home({ trendingResults, followResults, providers }) {
+interface IHomeProps {
+  trendingResults: ITrendingResults[],
+  followResults: IFollowResults[],
+  providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null,
+}
+
+export const Home:FC<IHomeProps> = ({ trendingResults, followResults, providers }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
 
@@ -55,7 +64,9 @@ export default function Home({ trendingResults, followResults, providers }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export default Home;
+
+export const getServerSideProps:GetServerSideProps = async (context) => {
   const providers = await getProviders();
   const session = await getSession(context);
 
