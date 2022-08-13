@@ -8,7 +8,7 @@ import Head from 'next/head';
 import Comment from '../components/Comment';
 import Login from '../components/Login';
 import Modal from '../components/Modal';
-import Post from '../components/Post';
+import Post, { IPost } from '../components/Post';
 import Sidebar from '../components/Sidebar';
 import Widgets from '../components/Widgets/Widgets';
 
@@ -33,7 +33,7 @@ function PostPage({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
   const [comments, setComments] = useState([]);
-  const [post, setPost] = useState();
+  const [post, setPost] = useState<IPost>();
   const router = useRouter();
   const { id } = router.query;
 
