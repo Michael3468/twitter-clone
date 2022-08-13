@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRecoilState } from 'recoil';
+import { RecoilState, useRecoilState } from 'recoil';
 import { modalState, postIdState } from '../atoms/modalAtom';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useState } from 'react';
@@ -32,8 +32,8 @@ import { IPost } from './Post'
 
 function Modal() {
   const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
-  const [postId, setPostId] = useRecoilState(postIdState);
+  const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
+  const [postId, setPostId] = useRecoilState<string>(postIdState);
   const [post, setPost] = useState<IPost>();
   const [comment, setComment] = useState<string>('');
   const router = useRouter();

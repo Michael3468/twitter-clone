@@ -31,7 +31,7 @@ import { ArrowLeftIcon } from '@heroicons/react/solid';
 
 function PostPage({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
+  const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
   const [comments, setComments] = useState([]);
   const [post, setPost] = useState();
   const router = useRouter();

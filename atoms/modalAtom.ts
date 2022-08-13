@@ -1,11 +1,11 @@
-import { atom } from 'recoil';
+import { atom, RecoilState } from 'recoil';
 
-export const modalState = atom({
+export const modalState: RecoilState<boolean> = atom({
   key: 'modalState',
   default: false,
 });
 
-export const postIdState = atom({
+export const postIdState: RecoilState<string> = atom({
   key: 'postIdState',
   default: '',
 });

@@ -50,8 +50,8 @@ interface IPostProps {
 
 const Post:FC<IPostProps> = ({ id, post, postPage }) => {
   const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
-  const [postId, setPostId] = useRecoilState(postIdState);
+  const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
+  const [postId, setPostId] = useRecoilState<string>(postIdState);
   const [comments, setComments] = useState<QueryDocumentSnapshot<DocumentData>[]>([]);
   const [likes, setLikes] = useState<QueryDocumentSnapshot<DocumentData>[]>([]);
   const [liked, setLiked] = useState<boolean>(false);

@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 
 export default function Home({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
+  const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
 
   // noscript tag simulation
   const [isJSEnabled, setIsJSEnabled] = useState(false);
