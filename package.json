@@ -28,6 +28,7 @@
     "recoil": "^0.7.4"
   },
   "devDependencies": {
+    "@types/emoji-mart": "^3.0.9",
     "@types/react": "^18.0.17",
     "autoprefixer": "^10.4.8",
     "commitizen": "^4.2.5",

@@ -7,20 +7,19 @@ import Login from '../components/Login';
 import Sidebar from '../components/Sidebar';
 import Widgets from '../components/Widgets/Widgets';
 
-import { ClientSafeProvider, getProviders, getSession, LiteralUnion, useSession } from 'next-auth/react';
+import { getProviders, getSession, useSession } from 'next-auth/react';
 import Modal from '../components/Modal';
 
 import followResults from '../components/json/whoToFollow.json';
 import trendingResults from '../components/json/whatsHappening.json';
 import { FC, useEffect, useState } from 'react';
-import { IFollowResults, ITrendingResults } from '../types';
-import { BuiltInProviderType } from 'next-auth/providers';
+import { IFollowResults, IProviders, ITrendingResults } from '../types';
 import { GetServerSideProps } from 'next';
 
 interface IHomeProps {
   trendingResults: ITrendingResults[],
   followResults: IFollowResults[],
-  providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null,
+  providers: IProviders,
 }
 
 export const Home:FC<IHomeProps> = ({ trendingResults, followResults, providers }) => {
@@ -28,7 +27,7 @@ export const Home:FC<IHomeProps> = ({ trendingResults, followResults, providers 
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
 
   // noscript tag simulation
-  const [isJSEnabled, setIsJSEnabled] = useState(false);
+  const [isJSEnabled, setIsJSEnabled] = useState<boolean>(false);
 
   useEffect(() => {
     setIsJSEnabled(true);

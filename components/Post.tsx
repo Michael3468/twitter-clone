@@ -44,8 +44,8 @@ export interface IPost {
 
 interface IPostProps {
   id: string,
-  post: IPost,
-  postPage?: string,
+  post: IPost | undefined,
+  postPage?: boolean,
 }
 
 const Post:FC<IPostProps> = ({ id, post, postPage }) => {

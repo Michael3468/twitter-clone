@@ -55,10 +55,10 @@ function Sidebar() {
       {/* user icon */}
       <div
         className="text-[#d9d9d9] flex items-center justify-center hoverAnimation xl:ml-auto mt-auto py-7"
-        onClick={signOut}
+        onClick={signOut as any}
       >
         <img
-          src={session?.user?.image}
+          src={session?.user?.image as string | undefined}
           alt=""
           className="h-10 w-10 rounded-full xl:mr-2.5 bg-black"
         />

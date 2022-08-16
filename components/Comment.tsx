@@ -11,12 +11,13 @@ import {
 } from '@heroicons/react/outline';
 import { FC } from 'react';
 
-interface IComment {
+export interface IComment {
   userImage: string,
   username: string,
   tag: string,
   timestamp: any,
   comment: string,
+  id: string,
 }
 
 interface ICommentProps {

@@ -40,13 +40,13 @@ function Modal() {
 
   useEffect(
     () =>
-      onSnapshot(doc(db, 'posts', postId), (snapshot) => {
+      onSnapshot(doc(db, 'posts', postId), (snapshot: any) => {
         setPost(snapshot.data());
       }),
     [db]
   );
 
-  const sendComment = async (e) => {
+  const sendComment = async (e: any) => {
     e.preventDefault();
 
     await addDoc(collection(db, 'posts', postId, 'comments'), {
@@ -127,7 +127,7 @@ function Modal() {
 
                   <div className="mt-7 flex space-x-3 w-full">
                     <img
-                      src={session?.user?.image}
+                      src={session?.user?.image as string | undefined}
                       alt=""
                       className="w-11 h-11 rounded-full"
                     />
@@ -136,7 +136,7 @@ function Modal() {
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         placeholder="Tweet your replay"
-                        rows="2"
+                        rows={2}
                         className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[80px]"
                       />
 

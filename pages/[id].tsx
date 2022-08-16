@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
-import { ClientSafeProvider, getProviders, getSession, LiteralUnion, useSession } from 'next-auth/react';
+import { getProviders, getSession, useSession } from 'next-auth/react';
 import { FC, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import Head from 'next/head';
 
-import Comment from '../components/Comment';
+import Comment, { IComment } from '../components/Comment';
 import Login from '../components/Login';
 import Modal from '../components/Modal';
 import Post, { IPost } from '../components/Post';
@@ -28,27 +28,26 @@ import {
 import { db } from '../firebase';
 
 import { ArrowLeftIcon } from '@heroicons/react/solid';
-import { IFollowResults, ITrendingResults } from '../types';
-import { BuiltInProviderType } from 'next-auth/providers';
+import { IFollowResults, IProviders, ITrendingResults } from '../types';
 import { GetServerSideProps } from 'next';
 
 interface IPostPageProps {
   trendingResults: ITrendingResults[],
   followResults: IFollowResults[],
-  providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null,
+  providers: IProviders,
 }
 
 const PostPage:FC<IPostPageProps> = ({ trendingResults, followResults, providers }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<IComment[]>([]);
   const [post, setPost] = useState<IPost>();
   const router = useRouter();
-  const { id } = router.query;
+  const id = router.query.id as unknown as string;
 
   useEffect(
     () =>
-      onSnapshot(doc(db, 'posts', id), (snapshot) => {
+      onSnapshot(doc(db, 'posts', id), (snapshot: any) => {
         setPost(snapshot.data());
       }),
     [db]
@@ -61,7 +60,7 @@ const PostPage:FC<IPostPageProps> = ({ trendingResults, followResults, providers
           collection(db, 'posts', id, 'comments'),
           orderBy('timestamp', 'desc')
         ),
-        (snapshot) => setComments(snapshot.docs)
+        (snapshot: any) => setComments(snapshot.docs)
       ),
     [db, id]
   );
@@ -119,6 +118,7 @@ const PostPage:FC<IPostPageProps> = ({ trendingResults, followResults, providers
     </div>
   );
 }
+
 export default PostPage;
 
 export const getServerSideProps:GetServerSideProps = async (context) => {

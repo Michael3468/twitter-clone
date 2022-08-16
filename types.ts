@@ -1,3 +1,6 @@
+import { BuiltInProviderType } from "next-auth/providers";
+import { ClientSafeProvider, LiteralUnion } from "next-auth/react";
+
 export interface ITrendingResults {
   heading: string;
   description: string;
@@ -11,7 +14,6 @@ export interface IFollowResults {
   tag: string;
 }
 
-// export {
-  // ITrendingResults,
-  // IFollowResults,
-// }
+export interface IProviders {
+  providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null
+}
