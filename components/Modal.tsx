@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { RecoilState, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { modalState, postIdState } from '../atoms/modalAtom';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useState } from 'react';
@@ -7,11 +7,9 @@ import { Fragment, useEffect, useState } from 'react';
 import {
   onSnapshot,
   doc,
-  DocumentData,
   addDoc,
   collection,
   serverTimestamp,
-  QueryDocumentSnapshot,
 } from '@firebase/firestore';
 
 import { db } from '../firebase';
