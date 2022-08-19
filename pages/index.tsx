@@ -12,14 +12,22 @@ import Modal from '../components/Modal';
 
 import followResults from '../components/json/whoToFollow.json';
 import trendingResults from '../components/json/whatsHappening.json';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { IFollowResults, IProviders, ITrendingResults } from '../types';
+import { GetServerSideProps } from 'next';
 
-export default function Home({ trendingResults, followResults, providers }) {
+interface IHomeProps {
+  trendingResults: ITrendingResults[],
+  followResults: IFollowResults[],
+  providers: IProviders,
+}
+
+export const Home:FC<IHomeProps> = ({ trendingResults, followResults, providers }) => {
   const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
+  const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
 
   // noscript tag simulation
-  const [isJSEnabled, setIsJSEnabled] = useState(false);
+  const [isJSEnabled, setIsJSEnabled] = useState<boolean>(false);
 
   useEffect(() => {
     setIsJSEnabled(true);
@@ -55,7 +63,9 @@ export default function Home({ trendingResults, followResults, providers }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export default Home;
+
+export const getServerSideProps:GetServerSideProps = async (context) => {
   const providers = await getProviders();
   const session = await getSession(context);
 
