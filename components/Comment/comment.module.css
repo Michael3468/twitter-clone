@@ -22,11 +22,11 @@
   }
 
   .comment_userinfo {
-    @apply inline-block group
+    @apply inline-block
   }
 
   .comment_username {
-    @apply font-bold text-[#d9d9d9] text-[15px] sm:text-base inline-block group-hover:underline
+    @apply font-bold text-[#d9d9d9] text-[15px] sm:text-base inline-block hover:underline
   }
 
   .comment_usertag {
@@ -42,11 +42,11 @@
   }
 
   .dots_icon_block {
-    @apply icon group flex-shrink-0
+    @apply icon flex-shrink-0
   }
 
   .dots_icon {
-    @apply h-5 text-[#6e767d] group-hover:text-[#1d9bf0]
+    @apply h-5 text-[#6e767d] hover:text-[#1d9bf0]
   }
 
   .icon_menu {
@@ -54,23 +54,23 @@
   }
 
   .chat_icon_group {
-    @apply icon group
+    @apply icon
   }
 
   .icon {
-    @apply h-5 group-hover:text-[#1d9bf0]
+    @apply h-5 hover:text-[#1d9bf0]
   }
 
   .heart_icon_group {
-    @apply flex items-center space-x-1 group
+    @apply flex items-center space-x-1
   }
 
   .heart_icon_block {
-    @apply icon group-hover:bg-pink-600/10
+    @apply icon hover:bg-pink-600/10
   }
 
   .heart_icon {
-    @apply h-5 group-hover:text-pink-600
+    @apply h-5 hover:text-pink-600
   }
 
   .heart_icon_counter {

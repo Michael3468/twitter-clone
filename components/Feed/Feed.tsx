@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
 
-import Input from './Input/Input';
-import Post, { IPost } from './Post';
-import Spinner from './Spinner/Spinner';
+import Input from '../Input/Input';
+import Post, { IPost } from '../Post';
+import Spinner from '../Spinner/Spinner';
 
 import {
   collection,
-  DocumentData,
   onSnapshot,
   orderBy,
   query,
-  QueryDocumentSnapshot,
 } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 
 import { SparklesIcon } from '@heroicons/react/outline';
 

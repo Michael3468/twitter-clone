@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 
 import Head from 'next/head';
 
-import Comment, { IComment } from '../components/Comment';
+import Comment, { IComment } from '../components/Comment/Comment';
 import Login from '../components/Login';
 import Modal from '../components/Modal';
 import Post, { IPost } from '../components/Post';

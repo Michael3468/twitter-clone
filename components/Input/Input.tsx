@@ -90,26 +90,14 @@ function Input() {
   };
 
   return (
-<<<<<<< HEAD:components/Input/Input.js
     <div className={`${styles.input} ${loading && 'opacity-60'}`}>
-      <img src={session.user.image} alt="" className={styles.image} />
-      <div className={styles.message_block}>
-        <div className={`${selectedFile && 'pb-47'} ${input && 'space-y-2.5'}`}>
-=======
-    // del overflow-y-scroll
-    <div
-      className={`border-b border-gray-700 p-3 flex space-x-3 ${
-        loading && 'opacity-60'
-      }`}
-    >
       <img
         src={session?.user?.image as string | undefined}
         alt=""
-        className="h-11 w-11 rounded-full cursor-pointer bg-black"
+        className={styles.image}
       />
-      <div className="w-full divide-y divide-gray-700">
+      <div className={styles.message_block}>
         <div className={`${selectedFile && 'pb-7'} ${input && 'space-y-2.5'}`}>
->>>>>>> develop:components/Input.tsx
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}

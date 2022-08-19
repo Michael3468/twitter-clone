@@ -2,8 +2,6 @@
 
 import Moment from 'react-moment';
 
-import styles from './comment.module.css';
-
 import {
   ChartBarIcon,
   ChatIcon,
@@ -11,8 +9,25 @@ import {
   HeartIcon,
   ShareIcon,
 } from '@heroicons/react/outline';
+import { FC } from 'react';
 
-function Comment({ id, comment }) {
+import styles from './comment.module.css';
+
+export interface IComment {
+  userImage: string,
+  username: string,
+  tag: string,
+  timestamp: any,
+  comment: string,
+  id: string,
+}
+
+interface ICommentProps {
+  id: string,
+  comment: IComment,
+}
+
+const Comment:FC<ICommentProps> = ({ id, comment }) => {
   return (
     <div className={styles.comment}>
       <img src={comment?.userImage} alt="" className={styles.image} />
