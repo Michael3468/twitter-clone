@@ -26,30 +26,32 @@ import {
 import { useRouter } from 'next/router';
 import Moment from 'react-moment';
 
+import { IPost } from './Post'
+
 function Modal() {
   const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
-  const [postId, setPostId] = useRecoilState(postIdState);
-  const [post, setPost] = useState();
-  const [comment, setComment] = useState('');
+  const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
+  const [postId, setPostId] = useRecoilState<string>(postIdState);
+  const [post, setPost] = useState<IPost>();
+  const [comment, setComment] = useState<string>('');
   const router = useRouter();
 
   useEffect(
     () =>
-      onSnapshot(doc(db, 'posts', postId), (snapshot) => {
+      onSnapshot(doc(db, 'posts', postId), (snapshot: any) => {
         setPost(snapshot.data());
       }),
     [db]
   );
 
-  const sendComment = async (e) => {
+  const sendComment = async (e: any) => {
     e.preventDefault();
 
     await addDoc(collection(db, 'posts', postId, 'comments'), {
       comment: comment,
-      username: session.user.name,
-      tag: session.user.tag,
-      userImage: session.user.image,
+      username: session?.user?.name,
+      tag: session?.user?.tag,
+      userImage: session?.user?.image,
       timestamp: serverTimestamp(),
     });
 
@@ -123,7 +125,7 @@ function Modal() {
 
                   <div className="mt-7 flex space-x-3 w-full">
                     <img
-                      src={session.user.image}
+                      src={session?.user?.image as string | undefined}
                       alt=""
                       className="w-11 h-11 rounded-full"
                     />
@@ -132,7 +134,7 @@ function Modal() {
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         placeholder="Tweet your replay"
-                        rows="2"
+                        rows={2}
                         className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[80px]"
                       />
 

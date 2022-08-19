@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
 import { getProviders, getSession, useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import Head from 'next/head';
 
-import Comment from '../components/Comment';
+import Comment, { IComment } from '../components/Comment';
 import Login from '../components/Login';
 import Modal from '../components/Modal';
-import Post from '../components/Post';
+import Post, { IPost } from '../components/Post';
 import Sidebar from '../components/Sidebar';
 import Widgets from '../components/Widgets/Widgets';
 
@@ -28,18 +28,26 @@ import {
 import { db } from '../firebase';
 
 import { ArrowLeftIcon } from '@heroicons/react/solid';
+import { IFollowResults, IProviders, ITrendingResults } from '../types';
+import { GetServerSideProps } from 'next';
 
-function PostPage({ trendingResults, followResults, providers }) {
+interface IPostPageProps {
+  trendingResults: ITrendingResults[],
+  followResults: IFollowResults[],
+  providers: IProviders,
+}
+
+const PostPage:FC<IPostPageProps> = ({ trendingResults, followResults, providers }) => {
   const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
-  const [comments, setComments] = useState([]);
-  const [post, setPost] = useState();
+  const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
+  const [comments, setComments] = useState<IComment[]>([]);
+  const [post, setPost] = useState<IPost>();
   const router = useRouter();
-  const { id } = router.query;
+  const id = router.query.id as unknown as string;
 
   useEffect(
     () =>
-      onSnapshot(doc(db, 'posts', id), (snapshot) => {
+      onSnapshot(doc(db, 'posts', id), (snapshot: any) => {
         setPost(snapshot.data());
       }),
     [db]
@@ -52,7 +60,7 @@ function PostPage({ trendingResults, followResults, providers }) {
           collection(db, 'posts', id, 'comments'),
           orderBy('timestamp', 'desc')
         ),
-        (snapshot) => setComments(snapshot.docs)
+        (snapshot: any) => setComments(snapshot.docs)
       ),
     [db, id]
   );
@@ -110,9 +118,10 @@ function PostPage({ trendingResults, followResults, providers }) {
     </div>
   );
 }
+
 export default PostPage;
 
-export async function getServerSideProps(context) {
+export const getServerSideProps:GetServerSideProps = async (context) => {
   const providers = await getProviders();
   const session = await getSession(context);
 

@@ -4,7 +4,15 @@ import Trending from '../Trending';
 
 import styles from './widgets.module.css';
 
-function Widgets({ trendingResults, followResults }) {
+import { IFollowResults, ITrendingResults } from '../../types';
+import { FC } from 'react';
+
+interface IWidgetsProps {
+  trendingResults: ITrendingResults[],
+  followResults: IFollowResults[],
+}
+
+const Widgets:FC<IWidgetsProps> = ({ trendingResults, followResults }) => {
   const widgetsImagePath = '/images/widgets';
 
   return (
@@ -26,7 +34,7 @@ function Widgets({ trendingResults, followResults }) {
       <div className={styles.trending}>
         <h4 className={styles.trending__caption}>{`What's happening`}</h4>
 
-        {trendingResults.map((result, index) => (
+        {trendingResults.map((result, index: number) => (
           <Trending key={index} result={result} />
         ))}
 
@@ -38,7 +46,7 @@ function Widgets({ trendingResults, followResults }) {
       <div className={styles.follow}>
         <h4 className={styles.follow__caption}>Who to follow</h4>
 
-        {followResults.map((result, index) => (
+        {followResults.map((result, index: number) => (
           <div key={index} className={styles.follow__item}>
             <Image
               src={`${widgetsImagePath}/${result.userImg}`}
@@ -66,4 +74,5 @@ function Widgets({ trendingResults, followResults }) {
     </div>
   );
 }
+
 export default Widgets;

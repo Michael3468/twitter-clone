@@ -1,4 +1,14 @@
-function SidebarLink({ text, Icon, active }) {
+import { FC } from "react";
+
+type HeroIcon = (props: React.ComponentProps<'svg'>) => JSX.Element;
+
+interface ISidebarLinkProps {
+  text: string,
+  Icon: HeroIcon,
+  active?: any,
+}
+
+const SidebarLink:FC<ISidebarLinkProps> = ({ text, Icon, active }) => {
   return (
     <div
       className={`text-[#d9d9d9] flex items-center justify-center xl:justify-start text-xl space-x-3 hoverAnimation ${
@@ -10,4 +20,5 @@ function SidebarLink({ text, Icon, active }) {
     </div>
   );
 }
+
 export default SidebarLink;
