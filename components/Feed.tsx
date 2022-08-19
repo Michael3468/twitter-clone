@@ -1,22 +1,29 @@
 import { useEffect, useState } from 'react';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  DocumentData,
+  onSnapshot,
+  orderBy,
+  query,
+  QueryDocumentSnapshot,
+} from 'firebase/firestore';
 import { db } from '../firebase';
 
 import Input from './Input';
-import Post from './Post';
+import Post, { IPost } from './Post';
 
 import { SparklesIcon } from '@heroicons/react/outline';
 import Spinner from './Spinner/Spinner';
 
 function Feed() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState<IPost[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(
     () =>
       onSnapshot(
         query(collection(db, 'posts'), orderBy('timestamp', 'desc')),
-        (snapshot) => {
+        (snapshot: any) => {
           setPosts(snapshot.docs);
           setLoading(true);
         }
@@ -47,4 +54,5 @@ function Feed() {
     </div>
   );
 }
+
 export default Feed;

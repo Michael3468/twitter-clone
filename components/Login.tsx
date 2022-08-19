@@ -1,7 +1,13 @@
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
+import { FC } from 'react';
+import { IProviders } from '../types';
 
-function Login({ providers }) {
+interface ILoginProps {
+  providers: IProviders,
+}
+
+const Login:FC<ILoginProps> = ({ providers }) => {
   return (
     <div className="flex flex-col items-center space-y-20 pt-48">
       <Image

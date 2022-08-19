@@ -7,7 +7,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline';
 
-import { useRef, useState } from 'react';
+import { LegacyRef, useRef, useState } from 'react';
 
 /* Emoji mart */
 import 'emoji-mart/css/emoji-mart.css';
@@ -28,11 +28,11 @@ import { useSession } from 'next-auth/react';
 /* firebase */
 
 function Input() {
-  const [input, setInput] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [showEmojis, setShowEmojis] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const filePickerRef = useRef(null);
+  const [input, setInput] = useState<string>('');
+  const [selectedFile, setSelectedFile] = useState<string | ArrayBuffer | null>(null);
+  const [showEmojis, setShowEmojis] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const filePickerRef = useRef<HTMLDivElement | HTMLInputElement>(null);
   const { data: session } = useSession();
 
   const sendPost = async () => {
@@ -40,10 +40,10 @@ function Input() {
     setLoading(true);
 
     const docRef = await addDoc(collection(db, 'posts'), {
-      id: session.user.uid,
-      username: session.user.name,
-      userImage: session.user.image,
-      tag: session.user.tag,
+      id: session?.user?.uid,
+      username: session?.user?.name,
+      userImage: session?.user?.image,
+      tag: session?.user?.tag,
       text: input,
       timestamp: serverTimestamp(),
     });
@@ -51,7 +51,7 @@ function Input() {
     const imageRef = ref(storage, `posts/${docRef.id}/image`);
 
     if (selectedFile) {
-      await uploadString(imageRef, selectedFile, 'data_url').then(async () => {
+      await uploadString(imageRef, selectedFile as string, 'data_url').then(async () => {
         const downloadUrl = await getDownloadURL(imageRef);
         await updateDoc(doc(db, 'posts', docRef.id), {
           image: downloadUrl,
@@ -65,23 +65,25 @@ function Input() {
     setShowEmojis(false);
   };
 
-  const addImageToPost = (e) => {
+  const addImageToPost = (e: any) => {
     const reader = new FileReader();
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
     }
 
     reader.onload = (readerEvent) => {
-      setSelectedFile(readerEvent.target.result);
+      if (readerEvent.target) {
+        setSelectedFile(readerEvent.target.result);
+      }
     };
   };
 
-  const addEmoji = (e) => {
+  const addEmoji = (e: any) => {
     let sym = e.unified.split('-');
     console.log('sym: ', sym);
-    let codesArray = [];
-    sym.forEach((el) => codesArray.push('0x' + el));
-    let emoji = String.fromCodePoint(...codesArray);
+    let codesArray: string[] = [];
+    sym.forEach((el: string) => codesArray.push('0x' + el));
+    let emoji = String.fromCodePoint(Number(...codesArray));
     setInput(input + emoji);
   };
 
@@ -93,7 +95,7 @@ function Input() {
       }`}
     >
       <img
-        src={session.user.image}
+        src={session?.user?.image as string | undefined}
         alt=""
         className="h-11 w-11 rounded-full cursor-pointer bg-black"
       />
@@ -102,7 +104,7 @@ function Input() {
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            rows="2"
+            rows={2}
             placeholder="What's happening?"
             className="bg-transparent w-full min-h-[50px] outline-none text-[#d9d9d9] text-lg placeholder-gray-700 tracking-wide"
           />
@@ -116,7 +118,7 @@ function Input() {
                 <XIcon className="text-white h-5" />
               </div>
               <img
-                src={selectedFile}
+                src={selectedFile as string | undefined}
                 alt=""
                 className="rounded-2xl max-h-80 object-contain"
               />
@@ -129,14 +131,14 @@ function Input() {
             <div className="flex items-center relative">
               <div
                 className="icon"
-                onClick={() => filePickerRef.current.click()}
+                onClick={() => filePickerRef?.current?.click()}
               >
                 <PhotographIcon className="h-[22px] text-[#1d9bf0]" />
                 <input
                   type="file"
                   hidden
                   onChange={addImageToPost}
-                  ref={filePickerRef}
+                  ref={filePickerRef as unknown as LegacyRef<HTMLInputElement>}
                 />
               </div>
 

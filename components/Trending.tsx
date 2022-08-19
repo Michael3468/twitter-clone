@@ -1,8 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
+import { FC } from 'react';
+import { ITrendingResults } from '../types';
 
-function Trending({ result }) {
+// import 
+interface ITrendingProps {
+  result: ITrendingResults,
+}
+
+const Trending:FC<ITrendingProps> = ({ result }) => {
 
   return (
     <div className="hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center justify-between">
@@ -13,7 +20,7 @@ function Trending({ result }) {
         </h6>
         <p className="text-[#6e767d] text-xs font-medium max-w-[250px]">
           Trending with{' '}
-          {result.tags.map((tag, index) => (
+          {result.tags.map((tag, index: number) => (
             <span key={index} className="tag">
               {tag}
             </span>
