@@ -3,7 +3,7 @@ import { modalState } from '../atoms/modalAtom';
 
 import Head from 'next/head';
 import Feed from '../components/Feed/Feed';
-import Login from '../components/Login';
+import Login from '../components/Login/Login';
 import Sidebar from '../components/Sidebar';
 import Widgets from '../components/Widgets/Widgets';
 
