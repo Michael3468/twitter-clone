@@ -1,18 +1,19 @@
-import { SearchIcon } from '@heroicons/react/outline';
+import { FC } from 'react';
 import Image from 'next/image';
-import Trending from '../Trending';
+
+import { SearchIcon } from '@heroicons/react/outline';
+import Trending from '../Trending/Trending';
 
 import styles from './widgets.module.css';
 
 import { IFollowResults, ITrendingResults } from '../../types';
-import { FC } from 'react';
 
 interface IWidgetsProps {
-  trendingResults: ITrendingResults[],
-  followResults: IFollowResults[],
+  trendingResults: ITrendingResults[];
+  followResults: IFollowResults[];
 }
 
-const Widgets:FC<IWidgetsProps> = ({ trendingResults, followResults }) => {
+const Widgets: FC<IWidgetsProps> = ({ trendingResults, followResults }) => {
   const widgetsImagePath = '/images/widgets';
 
   return (
@@ -21,11 +22,7 @@ const Widgets:FC<IWidgetsProps> = ({ trendingResults, followResults }) => {
       <div className={styles.search}>
         <div className={styles.search__bar}>
           <SearchIcon className={styles.search__icon} />
-          <input
-            type="text"
-            className={styles.search__input}
-            placeholder="Search Twitter"
-          />
+          <input type='text' className={styles.search__input} placeholder='Search Twitter' />
         </div>
       </div>
       {/* search end */}
@@ -53,26 +50,22 @@ const Widgets:FC<IWidgetsProps> = ({ trendingResults, followResults }) => {
               alt={result.username}
               width={50}
               height={50}
-              objectFit="cover"
-              className="rounded-full"
+              objectFit='cover'
+              className='rounded-full'
             />
             <div className={styles.follow__item_text}>
               <h4 className={styles.follow__item_text_username}>{result.username}</h4>
               <h5 className={styles.follow__item_text_tag}>{result.tag}</h5>
             </div>
-            <button className={styles.follow__item_button}>
-              Follow
-            </button>
+            <button className={styles.follow__item_button}>Follow</button>
           </div>
         ))}
 
-        <button className={styles.follow__button}>
-          Show more
-        </button>
+        <button className={styles.follow__button}>Show more</button>
       </div>
       {/* follow end */}
     </div>
   );
-}
+};
 
 export default Widgets;

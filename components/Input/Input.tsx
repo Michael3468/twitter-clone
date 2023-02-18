@@ -1,4 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import { LegacyRef, useRef, useState } from 'react';
+import { useSession } from 'next-auth/react';
+
 import {
   CalendarIcon,
   ChartBarIcon,
@@ -7,24 +10,15 @@ import {
   XIcon,
 } from '@heroicons/react/outline';
 
-import { LegacyRef, useRef, useState } from 'react';
-
 /* Emoji mart */
-import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
 /* Emoji mart end */
 
 /* firebase */
 import { db, storage } from '../../firebase';
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  updateDoc,
-} from '@firebase/firestore';
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from '@firebase/firestore';
 import { getDownloadURL, ref, uploadString } from '@firebase/storage';
-import { useSession } from 'next-auth/react';
 /* firebase end */
 
 import styles from './input.module.css';
@@ -91,11 +85,7 @@ function Input() {
 
   return (
     <div className={`${styles.input} ${loading && 'opacity-60'}`}>
-      <img
-        src={session?.user?.image as string | undefined}
-        alt=""
-        className={styles.image}
-      />
+      <img src={session?.user?.image as string | undefined} alt='' className={styles.image} />
       <div className={styles.message_block}>
         <div className={`${selectedFile && 'pb-7'} ${input && 'space-y-2.5'}`}>
           <textarea
@@ -107,16 +97,13 @@ function Input() {
           />
 
           {selectedFile && (
-            <div className="relative">
-              <div
-                className={styles.xicon_block}
-                onClick={() => setSelectedFile(null)}
-              >
+            <div className='relative'>
+              <div className={styles.xicon_block} onClick={() => setSelectedFile(null)}>
                 <XIcon className={styles.xicon} />
               </div>
               <img
                 src={selectedFile as string | undefined}
-                alt=""
+                alt=''
                 className={styles.selected_image}
               />
             </div>
@@ -126,28 +113,25 @@ function Input() {
         {!loading && (
           <div className={styles.icons_and_button}>
             <div className={styles.icons}>
-              <div
-                className="icon"
-                onClick={() => filePickerRef?.current?.click()}
-              >
+              <div className='icon' onClick={() => filePickerRef?.current?.click()}>
                 <PhotographIcon className={styles.icon_text} />
                 <input
-                  type="file"
+                  type='file'
                   hidden
                   onChange={addImageToPost}
                   ref={filePickerRef as unknown as LegacyRef<HTMLInputElement>}
                 />
               </div>
 
-              <div className="icon rotate-90">
+              <div className='icon rotate-90'>
                 <ChartBarIcon className={styles.icon_text} />
               </div>
 
-              <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
+              <div className='icon' onClick={() => setShowEmojis(!showEmojis)}>
                 <EmojiHappyIcon className={styles.icon_text} />
               </div>
 
-              <div className="icon">
+              <div className='icon'>
                 <CalendarIcon className={styles.icon_text} />
               </div>
 
@@ -163,7 +147,7 @@ function Input() {
                     borderRadius: '20px',
                     zIndex: 10,
                   }}
-                  theme="dark"
+                  theme='dark'
                 />
               )}
               {/* Emoji mart end */}

@@ -21,7 +21,7 @@
     @apply text-[#6e767d]
   }
 
-  .comment_userinfo {
+  .comment_user_info {
     @apply inline-block
   }
 
@@ -29,7 +29,7 @@
     @apply font-bold text-[#d9d9d9] text-[15px] sm:text-base inline-block hover:underline
   }
 
-  .comment_usertag {
+  .comment_user_tag {
     @apply ml-1.5 text-sm sm:text-[15px]
   }
 

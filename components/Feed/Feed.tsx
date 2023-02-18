@@ -1,4 +1,3 @@
-// TODO imports order (whole app)
 import { useEffect, useState } from 'react';
 
 import Input from '../Input/Input';
@@ -7,9 +6,9 @@ import Spinner from '../Spinner/Spinner';
 
 // TODO add to workspace settings
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
-import { db } from '../../firebase';
-
 import { SparklesIcon } from '@heroicons/react/outline';
+
+import { db } from '../../firebase';
 
 import styles from './feed.module.css';
 import globalStyles from '../../styles/globals.module.css';
@@ -18,6 +17,7 @@ function Feed() {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  // TODO useEffect dependency array
   useEffect(
     () =>
       onSnapshot(query(collection(db, 'posts'), orderBy('timestamp', 'desc')), (snapshot: any) => {

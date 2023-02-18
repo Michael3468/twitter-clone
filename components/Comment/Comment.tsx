@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-
+import { FC } from 'react';
 import Moment from 'react-moment';
 
 import {
@@ -9,43 +9,40 @@ import {
   HeartIcon,
   ShareIcon,
 } from '@heroicons/react/outline';
-import { FC } from 'react';
 
 import styles from './comment.module.css';
 
 export interface IComment {
-  userImage: string,
-  username: string,
-  tag: string,
-  timestamp: any,
-  comment: string,
-  id: string,
+  userImage: string;
+  username: string;
+  tag: string;
+  timestamp: any;
+  comment: string;
+  id: string;
 }
 
 interface ICommentProps {
-  id: string,
-  comment: IComment,
+  id: string;
+  comment: IComment;
 }
 
-const Comment:FC<ICommentProps> = ({ id, comment }) => {
+const Comment: FC<ICommentProps> = ({ id, comment }) => {
   return (
     <div className={styles.comment}>
-      <img src={comment?.userImage} alt="" className={styles.image} />
+      <img src={comment?.userImage} alt='' className={styles.image} />
       <div className={styles.comment_body}>
         {/* comment */}
         <div className={styles.comment_block}>
           <div className={styles.comment_text}>
-            <div className={styles.comment_userinfo}>
+            <div className={styles.comment_user_info}>
               <h4 className={styles.comment_username}>{comment?.username}</h4>
-              <span className={styles.comment_usertag}>@{comment?.tag} </span>
+              <span className={styles.comment_user_tag}>@{comment?.tag} </span>
             </div>{' '}
             ·{' '}
             <span className={styles.timestamp}>
               <Moment fromNow>{comment?.timestamp.toDate()}</Moment>
             </span>
-            <p className={styles.message}>
-              {comment?.comment}
-            </p>
+            <p className={styles.message}>{comment?.comment}</p>
           </div>
           <div className={styles.dots_icon_block}>
             <DotsHorizontalIcon className={styles.dots_icon} />
@@ -78,5 +75,5 @@ const Comment:FC<ICommentProps> = ({ id, comment }) => {
       </div>
     </div>
   );
-}
+};
 export default Comment;
