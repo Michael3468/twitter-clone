@@ -9,7 +9,7 @@ import Comment, { IComment } from '../components/Comment/Comment';
 import Login from '../components/Login/Login';
 import Modal from '../components/Modal/Modal';
 import Post, { IPost } from '../components/Post/Post';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/Sidebar/Sidebar';
 import Widgets from '../components/Widgets/Widgets';
 
 import { modalState } from '../atoms/modalAtom';

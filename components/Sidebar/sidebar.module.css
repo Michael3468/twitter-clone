@@ -1,0 +1,43 @@
+@tailwind components;
+
+@layer components {
+  .sidebar {
+    @apply hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full
+  }
+
+  .logo {
+    @apply flex items-center justify-center w-14 h-14 p-0 xl:ml-24
+  }
+
+  .navigation {
+    @apply mt-4 mb-2.5 xl:ml-24
+  }
+
+  .tweet_button {
+    @apply hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-56 h-[52px] text-lg font-bold shadow-md hover:bg-[#1a8cd8]
+  }
+
+  .user_info {
+    @apply text-[#d9d9d9] flex items-center justify-center xl:ml-auto mt-auto py-7
+  }
+
+  .user_info_avatar {
+    @apply h-10 w-10 rounded-full xl:mr-2.5 bg-black
+  }
+
+  .user_info_text {
+    @apply hidden xl:inline leading-5
+  }
+
+  .user_name {
+    @apply font-bold
+  }
+
+  .user_nickname {
+    @apply text-[#6e767d]
+  }
+
+  .dots_horizontal_icon {
+    @apply h-5 hidden xl:inline ml-3
+  }
+}
