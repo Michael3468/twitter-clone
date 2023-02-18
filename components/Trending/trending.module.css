@@ -1,0 +1,23 @@
+@tailwind components;
+
+@layer components {
+  .trending {
+    @apply hover:bg-white hover:bg-opacity-[0.03] px-4 py-3 cursor-pointer transition duration-200 ease-out flex items-center justify-between
+  }
+
+  .inner_block {
+    @apply space-y-0.5
+  }
+
+  .caption {
+    @apply text-[#6e767d] text-xs font-medium
+  }
+
+  .description {
+    @apply font-bold max-w-[250px] text-sm
+  }
+
+  .tags {
+    @apply text-[#6e767d] text-xs font-medium max-w-[250px]
+  }
+}
