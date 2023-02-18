@@ -17,7 +17,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline';
 
-import { IPost } from '../Post';
+import { IPost } from '../Post/Post';
 
 import { modalState, postIdState } from '../../atoms/modalAtom';
 import { db } from '../../firebase';

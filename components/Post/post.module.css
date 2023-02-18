@@ -1,0 +1,52 @@
+@tailwind components;
+
+@layer components {
+  .post {
+    @apply p-3 flex cursor-pointer border-b border-gray-700
+  }
+
+  .user_avatar {
+    @apply h-11 w-11 rounded-full mr-4 bg-black
+  }
+
+  .body {
+    @apply flex flex-col space-y-2 w-full
+  }
+
+  .user_name {
+    @apply font-bold text-[15px] sm:text-base text-[#d9d9d9] group-hover:underline
+  }
+
+  .post_page_user_avatar {
+    @apply h-11 w-11 rounded-full mr-4
+  }
+
+  .area {
+    @apply text-[#6e767d]
+  }
+
+  .created_time {
+    @apply hover:underline text-sm sm:text-[15px]
+  }
+
+  .text {
+    @apply text-[#d9d9d9] text-[15px] sm:text-base mt-0.5
+  }
+
+  .dots_horizontal_icon {
+    @apply h-5 text-[#6e767d] group-hover:text-[#1d9bf0]
+  }
+
+  .post_page_text {
+    @apply text-[#d9d9d9] text-[15px] sm:text-base mt-0.5
+  }
+
+  .image {
+    @apply rounded-2xl max-h-[700px] object-cover mr-2
+  }
+
+  .icons {
+    @apply text-[#6e767d] flex justify-between w-10/12
+  }
+
+}
