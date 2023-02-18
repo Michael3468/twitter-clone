@@ -8,7 +8,7 @@ import Sidebar from '../components/Sidebar';
 import Widgets from '../components/Widgets/Widgets';
 
 import { getProviders, getSession, useSession } from 'next-auth/react';
-import Modal from '../components/Modal';
+import Modal from '../components/Modal/Modal';
 
 import followResults from '../components/json/whoToFollow.json';
 import trendingResults from '../components/json/whatsHappening.json';

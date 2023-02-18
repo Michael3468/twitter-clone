@@ -1,0 +1,95 @@
+@tailwind components;
+
+@layer components {
+  .dialog {
+    @apply fixed z-50 inset-0 pt-8
+  }
+
+  .transition_childs {
+    @apply flex items-start justify-center min-h-[800px] sm:min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0
+  }
+
+  .dialog_overlay {
+    @apply fixed inset-0 bg-[#5b7083] bg-opacity-40 transition-opacity
+  }
+
+  .modal {
+    @apply inline-block align-bottom bg-black rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full
+  }
+
+  .modal_caption {
+    @apply flex items-center px-1.5 py-2 border-b border-gray-700
+  }
+
+  .x_icon_button {
+    @apply w-9 h-9 flex items-center justify-center xl:px-0
+  }
+
+  .x_icon {
+    @apply h-[22px] text-white
+  }
+
+  .comments {
+    @apply flex px-4 pt-5 pb-2.5 sm:px-6
+  }
+
+  .user {
+    @apply text-[#6e767d] flex gap-x-3 relative
+  }
+
+  .line_between_user_images {
+    @apply w-0.5 h-full z-[-1] absolute left-5 top-11 bg-gray-600
+  }
+
+  .user_image {
+    @apply w-11 h-11 rounded-full
+  }
+
+  .user_name {
+    @apply font-bold text-[15px] sm:text-base text-[#d9d9d9] inline-block
+  }
+
+  .user_nickname {
+    @apply ml-1.5 text-sm sm:text-[15px]
+  }
+
+  .comment_added_time {
+    @apply hover:underline text-sm sm:text-[15px]
+  }
+
+  .comment_text {
+    @apply text-[#d9d9d9] text-[15px] sm:text-base
+  }
+
+  .new_comment {
+    @apply mt-7 flex space-x-3 w-full
+  }
+
+  .new_comment_user_avatar {
+    @apply w-11 h-11 rounded-full
+  }
+
+  .comment_area {
+    @apply flex-grow mt-2
+  }
+
+  .comment_area_text {
+    @apply bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[80px]
+  }
+
+  .comment_area_icons_buttons {
+    @apply flex items-center justify-between w-full pt-2.5
+  }
+
+  .comment_area_icons {
+    @apply flex items-center
+  }
+
+  .comment_area_buttons {
+    @apply bg-[#1d9bf0] text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-[#1a8cd8] disabled:hover:bg-[#1d9bf0] disabled:opacity-50 disabled:cursor-default
+  }
+
+  .icon_style {
+    @apply text-[#1d9bf0] h-[22px]
+  }
+}
