@@ -44,7 +44,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
       onSnapshot(doc(db, 'posts', id), (snapshot: any) => {
         setPost(snapshot.data());
       }),
-    [db],
+    [id],
   );
 
   useEffect(
@@ -53,7 +53,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
         query(collection(db, 'posts', id, 'comments'), orderBy('timestamp', 'desc')),
         (snapshot: any) => setComments(snapshot.docs),
       ),
-    [db, id],
+    [id],
   );
 
   if (!session) return <Login providers={providers} />;

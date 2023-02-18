@@ -38,7 +38,7 @@ function Modal() {
       onSnapshot(doc(db, 'posts', postId), (snapshot: any) => {
         setPost(snapshot.data());
       }),
-    [db],
+    [postId],
   );
 
   const sendComment = async (e: any) => {
