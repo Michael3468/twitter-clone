@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { signOut, useSession } from 'next-auth/react';
 
-import SidebarLink from '../SidebarLink';
+// TODO rename component.tsx to index.tsx (all components)
+import SidebarLink from '../SidebarLink/SidebarLink';
 
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -52,9 +53,7 @@ function Sidebar() {
       </div>
 
       {/* twitter button */}
-      <button className={styles.tweet_button}>
-        Tweet
-      </button>
+      <button className={styles.tweet_button}>Tweet</button>
 
       {/* user icon */}
       <div
