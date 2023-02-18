@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cm": "cz"
+    "cm": "cz",
+    "release-same-version": "git flow release start next && git flow release finish -n next",
+    "release-minor": "git flow release start next && npm version minor && git flow release finish -n next",
+    "release-patch": "git flow release start next && npm version patch && git flow release finish -n next",
+    "push": "git checkout main && git push && git checkout develop && git push"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.2",

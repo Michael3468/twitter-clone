@@ -1,0 +1,81 @@
+@tailwind components;
+
+@layer components {
+  .comment {
+    @apply p-3 flex cursor-pointer border-b border-gray-700
+  }
+
+  .image {
+    @apply h-11 w-11 rounded-full mr-4
+  }
+
+  .comment_body {
+    @apply flex flex-col space-y-2 w-full
+  }
+
+  .comment_block {
+    @apply flex justify-between
+  }
+
+  .comment_text {
+    @apply text-[#6e767d]
+  }
+
+  .comment_user_info {
+    @apply inline-block
+  }
+
+  .comment_username {
+    @apply font-bold text-[#d9d9d9] text-[15px] sm:text-base inline-block hover:underline
+  }
+
+  .comment_user_tag {
+    @apply ml-1.5 text-sm sm:text-[15px]
+  }
+
+  .timestamp {
+    @apply hover:underline text-sm sm:text-[15px]
+  }
+
+  .message {
+    @apply text-[#d9d9d9] mt-0.5 max-w-lg overflow-scroll text-[15px] sm:text-base
+  }
+
+  .dots_icon_block {
+    @apply icon flex-shrink-0
+  }
+
+  .dots_icon {
+    @apply h-5 text-[#6e767d] hover:text-[#1d9bf0]
+  }
+
+  .icon_menu {
+    @apply text-[#6e767d] flex justify-between w-10/12
+  }
+
+  .chat_icon_group {
+    @apply icon
+  }
+
+  .icon {
+    @apply h-5 hover:text-[#1d9bf0]
+  }
+
+  .heart_icon_group {
+    @apply flex items-center space-x-1
+  }
+
+  .heart_icon_block {
+    @apply icon hover:bg-pink-600/10
+  }
+
+  .heart_icon {
+    @apply h-5 hover:text-pink-600
+  }
+
+  .heart_icon_counter {
+    @apply group-hover:bg-pink-600 text-sm
+  }
+
+
+}

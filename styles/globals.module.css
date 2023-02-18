@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .hoverAnimation {
+    @apply hover:bg-[#d9d9d9] hover:bg-opacity-10 rounded-full cursor-pointer w-[52px] h-[45px] xl:w-auto xl:py-3 xl:px-4 transition duration-200 ease-out;
+  }
+}

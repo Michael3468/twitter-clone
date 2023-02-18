@@ -2,13 +2,13 @@ import { useRecoilState } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
 
 import Head from 'next/head';
-import Feed from '../components/Feed';
-import Login from '../components/Login';
-import Sidebar from '../components/Sidebar';
+import Feed from '../components/Feed/Feed';
+import Login from '../components/Login/Login';
+import Sidebar from '../components/Sidebar/Sidebar';
 import Widgets from '../components/Widgets/Widgets';
 
 import { getProviders, getSession, useSession } from 'next-auth/react';
-import Modal from '../components/Modal';
+import Modal from '../components/Modal/Modal';
 
 import followResults from '../components/json/whoToFollow.json';
 import trendingResults from '../components/json/whatsHappening.json';
@@ -17,12 +17,12 @@ import { IFollowResults, IProviders, ITrendingResults } from '../types';
 import { GetServerSideProps } from 'next';
 
 interface IHomeProps {
-  trendingResults: ITrendingResults[],
-  followResults: IFollowResults[],
-  providers: IProviders,
+  trendingResults: ITrendingResults[];
+  followResults: IFollowResults[];
+  providers: IProviders;
 }
 
-export const Home:FC<IHomeProps> = ({ trendingResults, followResults, providers }) => {
+export const Home: FC<IHomeProps> = ({ trendingResults, followResults, providers }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
 
@@ -41,31 +41,28 @@ export const Home:FC<IHomeProps> = ({ trendingResults, followResults, providers 
   // noscript tag simulation end
 
   return (
-    <div className="">
+    <div className=''>
       <Head>
         <title>Twitter</title>
-        <link rel="icon" href="favicon.ico" />
+        <link rel='icon' href='favicon.ico' />
       </Head>
 
-      <main className="bg-black min-h-screen flex max-w-[1500px] mx-auto">
+      <main className='bg-black min-h-screen flex max-w-[1500px] mx-auto'>
         <Sidebar />
 
         <Feed />
 
-        <Widgets
-          trendingResults={trendingResults}
-          followResults={followResults}
-        />
+        <Widgets trendingResults={trendingResults} followResults={followResults} />
 
         {isOpen && <Modal />}
       </main>
     </div>
   );
-}
+};
 
 export default Home;
 
-export const getServerSideProps:GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const providers = await getProviders();
   const session = await getSession(context);
 
@@ -77,4 +74,4 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       session,
     },
   };
-}
+};

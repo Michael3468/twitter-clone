@@ -6,5 +6,12 @@
   },
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "cSpell.words": [
+    "firestore",
+    "fontawesome",
+    "fortawesome",
+    "headlessui",
+    "heroicons"
+  ]
 }
