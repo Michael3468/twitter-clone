@@ -41,12 +41,12 @@ export interface IPost {
   timestamp: any;
   text: string;
   image: string;
-  data: () => {};
+  data: () => IPost;
 }
 
 interface IPostProps {
   id: string;
-  post: IPost | undefined;
+  post: IPost;
   postPage?: boolean;
 }
 
@@ -79,16 +79,19 @@ const Post: FC<IPostProps> = ({ id, post, postPage }) => {
   );
 
   const likePost = async () => {
-    if (liked) {
-      await deleteDoc(doc(db, 'posts', id, 'likes', session?.user?.uid));
-    } else {
-      await setDoc(doc(db, 'posts', id, 'likes', session?.user?.uid), {
-        username: session?.user?.name,
-      });
+    if (session !== null) {
+      if (liked) {
+        await deleteDoc(doc(db, 'posts', id, 'likes', session.user.uid));
+      } else {
+        await setDoc(doc(db, 'posts', id, 'likes', session.user.uid), {
+          username: session?.user?.name,
+        });
+      }
     }
   };
 
   return (
+    // TODO max-width on small size
     <div className={styles.post} onClick={() => router.push(`/${id}`)}>
       {!postPage && <img src={post?.userImage} alt='' className={styles.user_avatar} />}
       <div className={styles.body}>
