@@ -38,7 +38,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
   const [comments, setComments] = useState<IComment[]>([]);
-  const [post, setPost] = useState<IPost>();
+  const [post, setPost] = useState<IPost | null>(null);
   const router = useRouter();
   const id = router.query.id as unknown as string;
 
@@ -86,17 +86,13 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
           </div>
           {/* header end */}
 
-          <Post id={id} post={post} postPage />
+          {post !== null && <Post id={id} post={post} postPage />}
+
           {/* comments */}
           {comments.length > 0 && (
             <div className='pb-72'>
               {comments.map((comment) => (
-                <Comment
-                  key={comment.id}
-                  id={comment.id}
-                  // TODO fix IComment
-                  comment={comment.data()}
-                />
+                <Comment key={comment.id} id={comment.id} comment={comment.data()} />
               ))}
             </div>
           )}

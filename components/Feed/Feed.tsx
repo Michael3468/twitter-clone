@@ -39,7 +39,6 @@ function Feed() {
       {loading ? (
         <div className='pb-72'>
           {posts.map((post) => (
-            // TODO fix post
             <Post key={post.id} id={post.id} post={post.data()} />
           ))}
         </div>
