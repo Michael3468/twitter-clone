@@ -65,17 +65,17 @@ const Post: FC<IPostProps> = ({ id, post, postPage }) => {
         query(collection(db, 'posts', id, 'comments'), orderBy('timestamp', 'desc')),
         (snapshot) => setComments(snapshot.docs),
       ),
-    [db, id],
+    [id],
   );
 
   useEffect(
     () => onSnapshot(collection(db, 'posts', id, 'likes'), (snapshot) => setLikes(snapshot.docs)),
-    [db, id],
+    [id],
   );
 
   useEffect(
     () => setLiked(likes.findIndex((like) => like.id === session?.user?.uid) !== -1),
-    [likes],
+    [likes, session?.user?.uid],
   );
 
   const likePost = async () => {

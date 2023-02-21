@@ -1,3 +1,4 @@
+// TODO imports order
 import { useRouter } from 'next/router';
 import { getProviders, getSession, useSession } from 'next-auth/react';
 import { FC, useEffect, useState } from 'react';
@@ -25,6 +26,8 @@ import { ArrowLeftIcon } from '@heroicons/react/solid';
 import { IFollowResults, IProviders, ITrendingResults } from '../types';
 import { GetServerSideProps } from 'next';
 
+import globalStyles from '../styles/globals.module.css';
+
 interface IPostPageProps {
   trendingResults: ITrendingResults[];
   followResults: IFollowResults[];
@@ -44,7 +47,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
       onSnapshot(doc(db, 'posts', id), (snapshot: any) => {
         setPost(snapshot.data());
       }),
-    [db],
+    [id],
   );
 
   useEffect(
@@ -53,7 +56,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
         query(collection(db, 'posts', id, 'comments'), orderBy('timestamp', 'desc')),
         (snapshot: any) => setComments(snapshot.docs),
       ),
-    [db, id],
+    [id],
   );
 
   if (!session) return <Login providers={providers} />;
@@ -65,6 +68,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
         <link rel='icon' href='favicon.ico' />
       </Head>
 
+      {/* TODO styles to module */}
       <main className='bg-black min-h-screen flex max-w-[1500px] mx-auto'>
         <Sidebar />
 
@@ -73,7 +77,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
           {/* header */}
           <div className='flex items-center px-1.5 py-2 border-b border-gray-700 text-[#d9d9d9] font-semibold text-xl gap-x-4 sticky top-0 z-50 bg-black'>
             <div
-              className='hoverAnimation w-9 h-9 flex items-center justify-center xl:px-0'
+              className={`${globalStyles.hoverAnimation} w-9 h-9 flex items-center justify-center xl:px-0`}
               onClick={() => router.push('/')}
             >
               <ArrowLeftIcon className='h-5 text-white' />
