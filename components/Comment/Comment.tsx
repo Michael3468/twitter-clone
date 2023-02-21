@@ -19,6 +19,7 @@ export interface IComment {
   timestamp: any;
   comment: string;
   id: string;
+  data: () => IComment;
 }
 
 interface ICommentProps {

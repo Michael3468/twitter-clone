@@ -92,12 +92,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
           {comments.length > 0 && (
             <div className='pb-72'>
               {comments.map((comment) => (
-                <Comment
-                  key={comment.id}
-                  id={comment.id}
-                  // TODO fix IComment
-                  comment={comment.data()}
-                />
+                <Comment key={comment.id} id={comment.id} comment={comment.data()} />
               ))}
             </div>
           )}
