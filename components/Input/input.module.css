@@ -2,7 +2,7 @@
 
 @layer components {
   .input {
-    @apply border-b border-gray-700 p-3 flex space-x-3
+    @apply border-b border-gray-700 p-3 flex space-x-3 max-w-[515px]
   }
 
   .image {

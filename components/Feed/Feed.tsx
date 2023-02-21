@@ -4,7 +4,6 @@ import Input from '../Input/Input';
 import Post, { IPost } from '../Post/Post';
 import Spinner from '../Spinner/Spinner';
 
-// TODO add to workspace settings
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { SparklesIcon } from '@heroicons/react/outline';
 
@@ -17,14 +16,13 @@ function Feed() {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  // TODO useEffect dependency array
   useEffect(
     () =>
       onSnapshot(query(collection(db, 'posts'), orderBy('timestamp', 'desc')), (snapshot: any) => {
         setPosts(snapshot.docs);
         setLoading(true);
       }),
-    [db],
+    [],
   );
 
   return (

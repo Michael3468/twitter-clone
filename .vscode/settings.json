@@ -13,5 +13,6 @@
     "fortawesome",
     "headlessui",
     "heroicons"
-  ]
+  ],
+  "todo-tree.tree.scanMode": "workspace only"
 }
