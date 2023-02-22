@@ -1,6 +1,7 @@
-import { SessionProvider } from 'next-auth/react';
 import { ComponentType, FC } from 'react';
 import { RecoilRoot } from 'recoil';
+import { SessionProvider } from 'next-auth/react';
+
 import '../styles/globals.css';
 
 type MyAppProps = {
