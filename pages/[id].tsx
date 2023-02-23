@@ -38,7 +38,17 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
   const [comments, setComments] = useState<IComment[]>([]);
-  const [post, setPost] = useState<IPost | null>(null);
+  const [post, setPost] = useState<IPost>({
+    id: '',
+    userImage: '',
+    username: '',
+    tag: '',
+    timestamp: 0,
+    text: '',
+    image: '',
+    data: () => post,
+  });
+
   const router = useRouter();
   const id = router.query.id as unknown as string;
 
