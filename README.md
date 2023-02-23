@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Requirements
 
-- Node.js >= 16.13.2
+- Node.js >= 16.13.0
 
 ## Getting Started
 
