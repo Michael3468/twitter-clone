@@ -12,7 +12,8 @@
     "fontawesome",
     "fortawesome",
     "headlessui",
-    "heroicons"
+    "heroicons",
+    "NEXTAUTH"
   ],
   "todo-tree.tree.scanMode": "workspace only"
 }
