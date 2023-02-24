@@ -14,8 +14,6 @@ interface IWidgetsProps {
 }
 
 const Widgets: FC<IWidgetsProps> = ({ trendingResults, followResults }) => {
-  const widgetsImagePath = '/images/widgets';
-
   return (
     <div className={styles.widgets}>
       {/* search */}
@@ -46,7 +44,7 @@ const Widgets: FC<IWidgetsProps> = ({ trendingResults, followResults }) => {
         {followResults.map((result, index: number) => (
           <div key={index} className={styles.follow__item}>
             <Image
-              src={`${widgetsImagePath}/${result.userImg}`}
+              src={`/img/whoToFollow/${result.userImg}`}
               alt={result.username}
               width={50}
               height={50}
