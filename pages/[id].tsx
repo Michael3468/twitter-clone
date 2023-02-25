@@ -1,7 +1,7 @@
-// TODO imports order
+import { FC, useEffect, useState } from 'react';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { getProviders, getSession, useSession } from 'next-auth/react';
-import { FC, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import Head from 'next/head';
@@ -24,7 +24,6 @@ import { db } from '../firebase';
 
 import { ArrowLeftIcon } from '@heroicons/react/solid';
 import { IFollowResults, IProviders, ITrendingResults } from '../types';
-import { GetServerSideProps } from 'next';
 
 import globalStyles from '../styles/globals.module.css';
 
