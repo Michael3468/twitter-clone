@@ -6,12 +6,12 @@ import { useRecoilState } from 'recoil';
 
 import Head from 'next/head';
 
-import Comment, { IComment } from '../components/Comment/Comment';
-import Login from '../components/Login/Login';
-import Modal from '../components/Modal/Modal';
-import Post, { IPost } from '../components/Post/Post';
-import Sidebar from '../components/Sidebar/Sidebar';
-import Widgets from '../components/Widgets/Widgets';
+import Comment, { IComment } from '../components/Comment';
+import Login from '../components/Login';
+import Modal from '../components/Modal';
+import Post, { IPost } from '../components/Post';
+import Sidebar from '../components/Sidebar';
+import Widgets from '../components/Widgets';
 
 import { modalState } from '../atoms/modalAtom';
 

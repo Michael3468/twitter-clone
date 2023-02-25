@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import Input from '../Input/Input';
-import Post, { IPost } from '../Post/Post';
-import Spinner from '../Spinner/Spinner';
+import Input from '../Input';
+import Post, { IPost } from '../Post';
+import Spinner from '../Spinner';
 
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { SparklesIcon } from '@heroicons/react/outline';

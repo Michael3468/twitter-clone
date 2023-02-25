@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { signOut, useSession } from 'next-auth/react';
 
-// TODO rename component.tsx to index.tsx (all components)
-import SidebarLink from '../SidebarLink/SidebarLink';
+import SidebarLink from '../SidebarLink';
 
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

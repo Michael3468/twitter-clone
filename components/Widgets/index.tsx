@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Image from 'next/image';
 
 import { SearchIcon } from '@heroicons/react/outline';
-import Trending from '../Trending/Trending';
+import Trending from '../Trending';
 
 import styles from './widgets.module.css';
 
