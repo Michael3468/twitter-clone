@@ -2,13 +2,13 @@ import { useRecoilState } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
 
 import Head from 'next/head';
-import Feed from '../components/Feed/Feed';
-import Login from '../components/Login/Login';
-import Sidebar from '../components/Sidebar/Sidebar';
-import Widgets from '../components/Widgets/Widgets';
+import Feed from '../components/Feed';
+import Login from '../components/Login';
+import Sidebar from '../components/Sidebar';
+import Widgets from '../components/Widgets';
 
 import { getProviders, getSession, useSession } from 'next-auth/react';
-import Modal from '../components/Modal/Modal';
+import Modal from '../components/Modal';
 
 import followResults from '../components/json/whoToFollow.json';
 import trendingResults from '../components/json/whatsHappening.json';

@@ -1,17 +1,17 @@
-// TODO imports order
+import { FC, useEffect, useState } from 'react';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { getProviders, getSession, useSession } from 'next-auth/react';
-import { FC, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import Head from 'next/head';
 
-import Comment, { IComment } from '../components/Comment/Comment';
-import Login from '../components/Login/Login';
-import Modal from '../components/Modal/Modal';
-import Post, { IPost } from '../components/Post/Post';
-import Sidebar from '../components/Sidebar/Sidebar';
-import Widgets from '../components/Widgets/Widgets';
+import Comment, { IComment } from '../components/Comment';
+import Login from '../components/Login';
+import Modal from '../components/Modal';
+import Post, { IPost } from '../components/Post';
+import Sidebar from '../components/Sidebar';
+import Widgets from '../components/Widgets';
 
 import { modalState } from '../atoms/modalAtom';
 
@@ -24,7 +24,6 @@ import { db } from '../firebase';
 
 import { ArrowLeftIcon } from '@heroicons/react/solid';
 import { IFollowResults, IProviders, ITrendingResults } from '../types';
-import { GetServerSideProps } from 'next';
 
 import globalStyles from '../styles/globals.module.css';
 
