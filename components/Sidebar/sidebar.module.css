@@ -2,7 +2,7 @@
 
 @layer components {
   .sidebar {
-    @apply hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full
+    @apply sm:flex flex-col items-center xl:items-start xl:w-[340px] min-[640px]:p-2 fixed h-full
   }
 
   .logo {
@@ -18,7 +18,7 @@
   }
 
   .user_info {
-    @apply text-[#d9d9d9] flex items-center justify-center xl:ml-auto mt-auto py-7
+    @apply text-[#d9d9d9] flex items-center justify-center xl:ml-auto mt-auto min-[640px]:py-7
   }
 
   .user_info_avatar {

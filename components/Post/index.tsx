@@ -91,7 +91,6 @@ const Post: FC<IPostProps> = ({ id, post, postPage }) => {
   };
 
   return (
-    // TODO max-width on small size
     <div className={styles.post} onClick={() => router.push(`/${id}`)}>
       {!postPage && <img src={post?.userImage} alt='' className={styles.user_avatar} />}
       <div className={styles.body}>
