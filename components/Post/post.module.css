@@ -2,7 +2,7 @@
 
 @layer components {
   .post {
-    @apply p-3 flex cursor-pointer border-b border-gray-700 max-w-[515px]
+    @apply p-3 flex cursor-pointer border-b border-gray-700 max-[1440px]:max-w-[586px] max-[1279px]:max-w-[670px] max-[640px]:max-w-full
   }
 
   .user_avatar {

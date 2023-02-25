@@ -2,7 +2,7 @@
 
 @layer components {
   .feed {
-    @apply text-white flex-grow border-l border-r border-gray-700 max-w-2xl sm:ml-[73px] xl:ml-[370px]
+    @apply text-white flex-grow border-l border-r border-gray-700 max-w-2xl sm:ml-[73px] max-[640px]:ml-[51px] xl:ml-[370px] min-[1280px]:min-w-[500px]
   }
 
   .header {
