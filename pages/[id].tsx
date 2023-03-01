@@ -26,6 +26,7 @@ import { ArrowLeftIcon } from '@heroicons/react/solid';
 import { IFollowResults, IProviders, ITrendingResults } from '../types';
 
 import globalStyles from '../styles/globals.module.css';
+import styles from '../styles/postPage.module.css';
 
 interface IPostPageProps {
   trendingResults: ITrendingResults[];
@@ -77,16 +78,15 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
         <link rel='icon' href='favicon.ico' />
       </Head>
 
-      {/* TODO styles to module */}
-      <main className='bg-black min-h-screen flex max-w-[1500px] mx-auto'>
+      <main className={styles.post_page}>
         <Sidebar />
 
         {/* post with comments */}
-        <div className='flex-grow border-l border-r border-gray-700 max-w-2xl sm:ml-[73px] xl:ml-[370px]'>
+        <div className={styles.post}>
           {/* header */}
-          <div className='flex items-center px-1.5 py-2 border-b border-gray-700 text-[#d9d9d9] font-semibold text-xl gap-x-4 sticky top-0 z-50 bg-black'>
+          <div className={styles.post_header}>
             <div
-              className={`${globalStyles.hoverAnimation} w-9 h-9 flex items-center justify-center xl:px-0`}
+              className={`${globalStyles.hoverAnimation} ${styles.post_header_arrow}`}
               onClick={() => router.push('/')}
             >
               <ArrowLeftIcon className='h-5 text-white' />

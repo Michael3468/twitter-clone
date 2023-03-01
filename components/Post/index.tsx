@@ -110,7 +110,7 @@ const Post: FC<IPostProps> = ({ id, post, postPage }) => {
             </div>{' '}
             ·{' '}
             <span className={styles.created_time}>
-              <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
+              {post?.timestamp ? <Moment fromNow>{post?.timestamp?.toDate()}</Moment> : ''}
             </span>
             {!postPage && <p className={styles.text}>{post?.text}</p>}
           </div>
