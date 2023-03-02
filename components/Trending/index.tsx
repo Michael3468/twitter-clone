@@ -6,7 +6,6 @@ import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import styles from './trending.module.css';
 import { ITrendingResults } from '../../types';
 
-// TODO Interfaces to Types
 interface ITrendingProps {
   result: ITrendingResults;
 }
