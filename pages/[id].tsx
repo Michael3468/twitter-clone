@@ -15,8 +15,8 @@ import Widgets from '../components/Widgets';
 
 import { modalState } from '../atoms/modalAtom';
 
-import followResults from '../components/json/whoToFollow.json';
-import trendingResults from '../components/json/whatsHappening.json';
+import followResults from '../public/json/whoToFollow.json';
+import trendingResults from '../public/json/whatsHappening.json';
 
 import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
 
