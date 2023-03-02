@@ -5,7 +5,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['rb.gy'],
+    domains: ['icon-library.com'],
   },
 };
 
