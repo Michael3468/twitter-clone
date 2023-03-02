@@ -12,7 +12,13 @@ interface ILoginProps {
 const Login: FC<ILoginProps> = ({ providers }) => {
   return (
     <div className={styles.login}>
-      <Image src='https://rb.gy/ogau5a' width={150} height={150} objectFit='contain' alt='' />
+      <Image
+        src='https://icon-library.com/images/twitter-icon-svg/twitter-icon-svg-28.jpg'
+        width={150}
+        height={150}
+        objectFit='contain'
+        alt=''
+      />
       <div>
         {Object.values(providers).map((provider) => (
           <div key={provider.name} className={styles.login__provider}>
