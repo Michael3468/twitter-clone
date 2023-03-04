@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { LegacyRef, useRef, useState } from 'react';
+import { ChangeEventHandler, LegacyRef, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 
 import {
@@ -22,6 +22,10 @@ import { getDownloadURL, ref, uploadString } from '@firebase/storage';
 /* firebase end */
 
 import styles from './input.module.css';
+
+interface HTMLInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+}
 
 function Input() {
   const [input, setInput] = useState<string>('');
@@ -61,10 +65,13 @@ function Input() {
     setShowEmojis(false);
   };
 
-  const addImageToPost = (e: any) => {
+  const addImageToPost = (e: HTMLInputEvent) => {
     const reader = new FileReader();
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
+
+    const file = e?.target.files && e?.target.files[0] ? e?.target.files[0] : null;
+
+    if (file) {
+      reader.readAsDataURL(file);
     }
 
     reader.onload = (readerEvent) => {
@@ -118,7 +125,7 @@ function Input() {
                 <input
                   type='file'
                   hidden
-                  onChange={addImageToPost}
+                  onChange={addImageToPost as unknown as ChangeEventHandler<HTMLInputElement>}
                   ref={filePickerRef as unknown as LegacyRef<HTMLInputElement>}
                 />
               </div>
