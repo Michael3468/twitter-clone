@@ -38,6 +38,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
   const [comments, setComments] = useState<IComment[]>([]);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [post, setPost] = useState<IPost>({
     id: '',
     userImage: '',
@@ -69,7 +70,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
     [id],
   );
 
-  if (!session) return <Login providers={providers} />;
+  if (isLogin) return <Login providers={providers} />;
 
   return (
     <div className=''>
@@ -111,7 +112,7 @@ const PostPage: FC<IPostPageProps> = ({ trendingResults, followResults, provider
 
         <Widgets trendingResults={trendingResults} followResults={followResults} />
 
-        {isOpen && <Modal />}
+        {isOpen && <Modal setIsLogin={setIsLogin}/>}
       </main>
     </div>
   );
