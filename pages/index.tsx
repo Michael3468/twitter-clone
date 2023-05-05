@@ -25,20 +25,24 @@ interface IHomeProps {
 export const Home: FC<IHomeProps> = ({ trendingResults, followResults, providers }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   // noscript tag simulation
+  // TODO: move this code to useJSEnabled hook
   const [isJSEnabled, setIsJSEnabled] = useState<boolean>(false);
 
   useEffect(() => {
     setIsJSEnabled(true);
   }, []);
 
-  if (!session && isJSEnabled) {
-    return <Login providers={providers} />;
-  } else if (!isJSEnabled) {
+  if (!isJSEnabled) {
     return <div>This App Works Better With Enabled JavaScript</div>;
   }
   // noscript tag simulation end
+
+  if (isLogin) {
+    return <Login providers={providers} />;
+  }
 
   return (
     <div className=''>
@@ -50,11 +54,11 @@ export const Home: FC<IHomeProps> = ({ trendingResults, followResults, providers
       <main className='bg-black min-h-screen flex max-w-[1500px] mx-auto'>
         <Sidebar />
 
-        <Feed />
+        <Feed setIsLogin={setIsLogin} />
 
         <Widgets trendingResults={trendingResults} followResults={followResults} />
 
-        {isOpen && <Modal />}
+        {isOpen && <Modal setIsLogin={setIsLogin} />}
       </main>
     </div>
   );

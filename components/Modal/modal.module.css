@@ -69,6 +69,10 @@
     @apply w-11 h-11 rounded-full
   }
 
+  .new_comment_no_user_avatar {
+    @apply w-11 h-11 rounded-full bg-[#e1bbbb]
+  }
+
   .comment_area {
     @apply flex-grow mt-2
   }

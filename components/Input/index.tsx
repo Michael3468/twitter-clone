@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { ChangeEventHandler, LegacyRef, useRef, useState } from 'react';
+import { ChangeEventHandler, FC, LegacyRef, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 
 import {
@@ -27,7 +27,11 @@ interface HTMLInputEvent extends Event {
   target: HTMLInputElement & EventTarget;
 }
 
-function Input() {
+type Props = {
+  setIsLogin: (value: boolean) => void;
+}
+
+const Input: FC<Props> = ({ setIsLogin }) => {
   const [input, setInput] = useState<string>('');
   const [selectedFile, setSelectedFile] = useState<string | ArrayBuffer | null>(null);
   const [showEmojis, setShowEmojis] = useState<boolean>(false);
@@ -90,9 +94,18 @@ function Input() {
     setInput(input + emoji);
   };
 
+  const handleLogin = () => {
+    setIsLogin(true);
+  }
+
   return (
     <div className={`${styles.input} ${loading && 'opacity-60'}`}>
-      <img src={session?.user?.image as string | undefined} alt='' className={styles.image} />
+      <img
+        src={session?.user?.image as string | undefined}
+        alt=''
+        className={session ? styles.image : ''}
+      />
+
       <div className={styles.message_block}>
         <div className={`${selectedFile && 'pb-7'} ${input && 'space-y-2.5'}`}>
           <textarea
@@ -105,6 +118,7 @@ function Input() {
 
           {selectedFile && (
             <div className='relative'>
+              {/* TODO: rename xicon */}
               <div className={styles.xicon_block} onClick={() => setSelectedFile(null)}>
                 <XIcon className={styles.xicon} />
               </div>
@@ -159,13 +173,17 @@ function Input() {
               )}
               {/* Emoji mart end */}
             </div>
-            <button
-              className={styles.input_button}
-              disabled={!input.trim() && !selectedFile}
-              onClick={sendPost}
-            >
-              Tweet
-            </button>
+            {session ? (
+              <button
+                className={styles.input_button}
+                disabled={!input.trim() && !selectedFile}
+                onClick={sendPost}
+              >
+                Tweet
+              </button>
+            ) : (
+              <button className={styles.input_button} onClick={handleLogin}>Log In</button>
+            )}
           </div>
         )}
       </div>
