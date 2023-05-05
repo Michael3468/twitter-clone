@@ -20,8 +20,9 @@ import { HomeIcon } from '@heroicons/react/solid';
 
 import styles from './sidebar.module.css';
 import globalStyles from '../../styles/globals.module.css';
+import React from 'react';
 
-function Sidebar() {
+const Sidebar = () => {
   const { data: session } = useSession();
 
   return (
@@ -51,25 +52,24 @@ function Sidebar() {
         <SidebarLink text='More' Icon={DotsCircleHorizontalIcon} />
       </div>
 
-      {/* twitter button */}
-      <button className={styles.tweet_button}>Tweet</button>
-
       {/* user icon */}
-      <div
-        className={`${styles.user_info} ${globalStyles.hoverAnimation}`}
-        onClick={signOut as any}
-      >
-        <img
-          src={session?.user?.image as string | undefined}
-          alt=''
-          className={styles.user_info_avatar}
-        />
-        <div className={styles.user_info_text}>
-          <h4 className={styles.user_name}>{session?.user?.name}</h4>
-          <p className={styles.user_nickname}>@{session?.user?.tag}</p>
+      {session && (
+        <div
+          className={`${styles.user_info} ${globalStyles.hoverAnimation}`}
+          onClick={signOut as any}
+        >
+          <img
+            src={session?.user?.image as string | undefined}
+            alt=''
+            className={styles.user_info_avatar}
+          />
+          <div className={styles.user_info_text}>
+            <h4 className={styles.user_name}>{session?.user?.name}</h4>
+            <p className={styles.user_nickname}>@{session?.user?.tag}</p>
+          </div>
+          <DotsHorizontalIcon className={styles.dots_horizontal_icon} />
         </div>
-        <DotsHorizontalIcon className={styles.dots_horizontal_icon} />
-      </div>
+      )}
     </div>
   );
 }

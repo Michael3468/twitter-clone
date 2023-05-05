@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { FC, useEffect, useState } from 'react';
 
 import Input from '../Input';
 import Post, { IPost } from '../Post';
@@ -12,7 +13,12 @@ import { db } from '../../firebase';
 import styles from './feed.module.css';
 import globalStyles from '../../styles/globals.module.css';
 
-function Feed() {
+type Props = {
+  setIsLogin: (value: boolean) => void;
+}
+const Feed: FC<Props> = ({ setIsLogin }) => {
+  const { data: session } = useSession();
+
   const [posts, setPosts] = useState<IPost[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -34,7 +40,8 @@ function Feed() {
         </div>
       </div>
 
-      <Input />
+      {/* {session && <Input />} */}
+      <Input setIsLogin={setIsLogin}/>
 
       {loading ? (
         <div className='pb-72'>

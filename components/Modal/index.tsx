@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Fragment, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
@@ -25,7 +25,11 @@ import { db } from '../../firebase';
 import styles from './modal.module.css';
 import globalStyles from '../../styles/globals.module.css';
 
-function Modal() {
+type Props = {
+  setIsLogin: (value: boolean) => void;
+}
+
+const Modal: FC<Props> = ({ setIsLogin }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
   const [postId, setPostId] = useRecoilState<string>(postIdState);
@@ -57,6 +61,10 @@ function Modal() {
 
     router.push(`/${postId}`);
   };
+
+  const handleLogin = () => {
+    setIsLogin(true);
+  }
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -115,14 +123,14 @@ function Modal() {
                     <img
                       src={session?.user?.image as string | undefined}
                       alt=''
-                      className={styles.new_comment_user_avatar}
+                      className={session ? styles.new_comment_user_avatar : styles.new_comment_no_user_avatar}
                     />
 
                     <div className={styles.comment_area}>
                       <textarea
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
-                        placeholder='Tweet your replay'
+                        placeholder={session ? 'Tweet your reply' : 'Log in and tweet your reply'}
                         rows={2}
                         className={styles.comment_area_text}
                       />
@@ -146,14 +154,23 @@ function Modal() {
                           </div>
                         </div>
 
-                        <button
-                          className={styles.comment_area_buttons}
-                          type='submit'
-                          onClick={sendComment}
-                          disabled={!comment.trim()}
-                        >
-                          Reply
-                        </button>
+                        {session ? (
+                          <button
+                            className={styles.comment_area_buttons}
+                            type='submit'
+                            onClick={sendComment}
+                            disabled={!comment.trim()}
+                          >
+                            Reply
+                          </button>
+                        ) : (
+                          <button
+                            className={styles.comment_area_buttons}
+                            onClick={handleLogin}
+                          >
+                            Log in
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
